@@ -1,0 +1,48 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url("D:/webdbms/BookForm.jpeg"); /* Replace 'your-background-image.jpg' with the actual URL of your background image */
+    background-size: cover;
+    background-position: center;
+    font-family: Arial, sans-serif;
+}
+
+.add-book-form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.add-book-form {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}

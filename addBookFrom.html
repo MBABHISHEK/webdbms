@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Book Form</title>
+    <link rel="stylesheet" href="AddBookForm.css">
+</head>
+<body>
+
+<div class="add-book-form-container">
+  <form id="add-book-form" class="add-book-form">
+    <label for="bookId">
+      Book ID:
+      <input type="text" id="bookId" name="Book_id" required>
+    </label>
+    <br>
+    <label for="bookTitle">
+      Title:
+      <input type="text" id="bookTitle" name="Book_title" required>
+    </label>
+    <br>
+    <label for="bookAuthor">
+      Author:
+      <input type="text" id="bookAuthor" name="Book_author" required>
+    </label>
+    <br>
+    <label for="bookEdition">
+      Edition:
+      <input type="text" id="bookEdition" name="Book_edition" required>
+    </label>
+    <br>
+    <label for="categorised">
+      Subject ID:
+      <input type="text" id="categorised" name="categorised" required>
+    </label>
+    <br>
+    <button type="button" onclick="handleFormSubmit()">Add Book</button>
+  </form>
+</div>
+
+<script>
+  function handleFormSubmit() {
+    const bookData = {
+      Book_id: document.getElementById('bookId').value,
+      Book_title: document.getElementById('bookTitle').value,
+      Book_author: document.getElementById('bookAuthor').value,
+      Book_edition: document.getElementById('bookEdition').value,
+      categorised: document.getElementById('categorised').value,
+    };
+
+    console.log('Book added successfully:', bookData);
+    // You can perform additional actions here if needed
+  }
+</script>
+
+</body>
+</html>
