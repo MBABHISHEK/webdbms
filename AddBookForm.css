@@ -1,7 +1,7 @@
 body {
     margin: 0;
     padding: 0;
-    background-image: url("D:/webdbms/BookForm.jpeg"); /* Replace 'your-background-image.jpg' with the actual URL of your background image */
+    background-image: url("BookForm.jpeg"); /* Replace 'your-background-image.jpg' with the actual URL of your background image */
     background-size: cover;
     background-position: center;
     font-family: Arial, sans-serif;
