@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-image: url("D:/webdbms/Home.jpeg");
+            background-size: cover;
+        }
+
+        navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .navbar-brand {
+        margin-right: 15px; /* Adjust the margin as needed */
+    }
+
+        .custom-navbar {
+            background-color: #6cb2eb;
+            margin: auto;
+            padding: 20px 30px;
+            border-radius: 50px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            height: 100px;
+            width: 1100px;
+            display: center;
+        }
+
+        .custom-navbar .navbar-brand {
+            color: #fff;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .custom-navbar .navbar-nav .nav-link {
+            color: #fff;
+            font-size: 18px;
+            margin-right: 15px;
+        }
+
+        .custom-navbar .navbar-nav .nav-link:hover {
+            color: #f8f9fa;
+        }
+
+        .dashboard-container {
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .sidebar {
+            width: 200px;
+            background-color: rgba(52, 58, 64, 0.7);
+            color: #fff;
+            padding: 20px;
+            border-radius: 0 10px 10px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+            height: 100vh;
+            position: fixed;
+            border-right: 5px solid #007bff;
+        }
+
+        sidebar :hover{
+            transform: translateX(25px);
+        }
+
+        .sidebar-buttons {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .dashboard-button {
+            margin-bottom: 10px;
+            text-align: center;
+            transition: background-color 0.3s ease;
+            background-color: rgba(52, 58, 64, 0.8);
+        }
+
+        .dashboard-button a {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            background-color: rgba(52, 58, 64, 0.7);
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .dashboard-button a:hover {
+            background-color: #0056b3;
+            transform: translateX(25px);
+        }
+
+        .mb-4 {
+            margin-bottom: 1.5rem !important;
+        }
+
+        /* Footer styles */
+        footer {
+            background-color: #343a40;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .logo-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .logo-container img {
+            width: 150px; /* Adjust the width as needed */
+            height: auto; /* Maintain aspect ratio */
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="left-side-image">
+
+            <!-- Add your left side image here -->
+            
+        </div>
+        <br>
+        <nav class="navbar navbar-expand-lg navbar-light custom-navbar">
+            <a class="navbar-brand" href="#">THE IDEASPRINGS</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="aboutus.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="services.html">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="D:/webdbms/contactUs.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+<br>
+<marquee behavior="scroll" direction="left" scrollamount="8" style="font-size: 30px; color: #f0e7e7;">
+    Welcome to  Ideas Spring Libary Management Software.
+</marquee>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.8/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+</body>
+</html>

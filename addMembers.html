@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Member Form</title>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Your custom CSS -->
+    <link rel="stylesheet" href="AddMemberForm.css">
+</head>
+<body>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form id="add-member-form" class="add-member-form">
+                <div class="form-row">
+                    <div class="form-group col">
+                        <label for="memberId">Member ID:</label>
+                        <input type="text" class="form-control" id="memberId" name="Member_id" required>
+                    </div>
+
+                    <div class="form-group col">
+                        <label for="firstName">First Name:</label>
+                        <input type="text" class="form-control" id="firstName" name="first_name" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col">
+                        <label for="lastName">Last Name:</label>
+                        <input type="text" class="form-control" id="lastName" name="last_name" required>
+                    </div>
+
+                    <div class="form-group col">
+                        <label for="email">Email:</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col">
+                        <label for="phoneNo">Phone Number:</label>
+                        <input type="tel" class="form-control" id="phoneNo" name="phone_no" required>
+                    </div>
+
+                    <div class="form-group col">
+                        <label for="address">Address:</label>
+                        <textarea class="form-control" id="address" name="address" required></textarea>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col">
+                        <label for="nextRenewal">Next Renewal Date:</label>
+                        <input type="date" class="form-control" id="nextRenewal" name="next_renewal" required>
+                    </div>
+
+                    <div class="form-group col">
+                        <label for="loginId">Login ID:</label>
+                        <input type="text" class="form-control" id="loginId" name="login_id" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col">
+                        <label for="registeredBy">Registered By:</label>
+                        <input type="text" class="form-control" id="registeredBy" name="registeredby" required>
+                    </div>
+                </div>
+
+                <button type="button" class="btn btn-primary" onclick="handleFormSubmit()">Add Member</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Include Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.8/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+    function handleFormSubmit() {
+        const memberData = {
+            Member_id: document.getElementById('memberId').value,
+            first_name: document.getElementById('firstName').value,
+            last_name: document.getElementById('lastName').value,
+            email: document.getElementById('email').value,
+            phone_no: document.getElementById('phoneNo').value,
+            address: document.getElementById('address').value,
+            next_renewal: document.getElementById('nextRenewal').value,
+            login_id: document.getElementById('loginId').value,
+            registeredby: document.getElementById('registeredBy').value,
+        };
+
+        console.log('Member added successfully:', memberData);
+        // You can perform additional actions here if needed
+    }
+</script>
+
+</body>
+</html>

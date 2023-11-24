@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        .dashboard-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start; /* Align to the left */
+            align-items: center;
+            height: 100vh;
+        }
+
+        .dashboard {
+            display: flex;
+            background-color: #343a40;
+            color: #fff;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            margin: 10px;
+            flex-basis: calc(50% - 20px); /* 50% width with 20px margin on both sides */
+        }
+
+        .dashboard:hover {
+            transform: scale(1.05);
+            margin-right: 10px; /* Adjust the margin based on your preference */
+        }
+
+        .sidebar {
+            width: 200px;
+        }
+
+        .sidebar-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .dashboard-button {
+            flex-basis: 100%;
+            text-align: center;
+            transition: transform 0.3s ease, margin-left 0.3s ease; /* Added margin-left transition */
+            position: relative;
+            z-index: 3;
+        }
+
+        .dashboard-button:hover {
+            transform: scale(1.1);
+        }
+
+        .button-container {
+            background-color: #343a40;
+            border-radius: 10px;
+        }
+
+        .dashboard-button a {
+            display: block;
+            padding: 10px;
+            border-radius: 8px;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .dashboard-button a:hover {
+            background-color: #0056b3;
+        }
+
+        .main-content {
+            flex-grow: 1;
+            padding: 20px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <div class="dashboard">
+            <div class="sidebar">
+                <div class="sidebar-buttons">
+                    <div class="dashboard-button">
+                        <div class="button-container">
+                            <a href="addBookFrom.html" class="btn btn-primary">Add Book</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="dashboard">
+            <div class="sidebar">
+                <div class="sidebar-buttons">
+                    <div class="dashboard-button">
+                        <div class="button-container">
+                            <a href="addMembers.html" class="btn btn-primary">Add Member</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="dashboard">
+            <div class="sidebar">
+                <div class="sidebar-buttons">
+                    <div class="dashboard-button">
+                        <div class="button-container">
+                            <a href="addStaffForm.html" class="btn btn-primary">Add Staff</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="dashboard">
+            <div class="sidebar">
+                <div class="sidebar-buttons">
+                    <div class="dashboard-button">
+                        <div class="button-container">
+                            <a href="addLogin.html" class="btn btn-primary">Add Login</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <!-- Content for AddBookForm, AddMemberForm, etc. goes here -->
+    </div>
+</body>
+</html>
