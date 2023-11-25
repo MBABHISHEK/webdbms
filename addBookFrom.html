@@ -36,6 +36,10 @@
     </label>
     <br>
     <button type="button" onclick="handleFormSubmit()">Add Book</button>
+
+    <!-- New buttons for delete and search -->
+    <button type="button" onclick="handleDeleteBook(document.getElementById('bookId').value)">Delete Book</button>
+    <button type="button" onclick="handleSearchBook(document.getElementById('bookTitle').value)">Search Book</button>
   </form>
 </div>
 
@@ -49,8 +53,54 @@
       categorised: document.getElementById('categorised').value,
     };
 
-    console.log('Book added successfully:', bookData);
-    // You can perform additional actions here if needed
+    // Send a POST request to add a book
+    fetch('http://your-server-url.com/add-book', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(bookData),
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Book added successfully:', data);
+      // You can perform additional actions here if needed
+    })
+    .catch(error => {
+      console.error('Error adding book:', error);
+    });
+  }
+
+  function handleDeleteBook(bookId) {
+    // Send a DELETE request to delete a book by ID
+    fetch(`http://your-server-url.com/delete-book/${bookId}`, {
+      method: 'DELETE',
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Book deleted successfully:', data);
+      // You can perform additional actions here if needed
+    })
+    .catch(error => {
+      console.error('Error deleting book:', error);
+    });
+  }
+
+  function handleSearchBook(bookName) {
+    // Send a GET request to search for books by name
+    fetch(`http://your-server-url.com/search-book/${bookName}`)
+    .then(response => response.json())
+    .then(data => {
+      if (data.error) {
+        console.error('Error searching for books:', data.error);
+      } else {
+        console.log('Books found:', data);
+        // You can display the search results or perform additional actions here
+      }
+    })
+    .catch(error => {
+      console.error('Error searching for books:', error);
+    });
   }
 </script>
 
