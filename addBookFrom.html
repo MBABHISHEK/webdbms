@@ -52,9 +52,9 @@
       Book_edition: document.getElementById('bookEdition').value,
       categorised: document.getElementById('categorised').value,
     };
-
+     console.log(bookData);
     // Send a POST request to add a book
-    fetch('http://your-server-url.com/add-book', {
+    fetch('http://localhost:3000/add-book', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -73,7 +73,7 @@
 
   function handleDeleteBook(bookId) {
     // Send a DELETE request to delete a book by ID
-    fetch(`http://your-server-url.com/delete-book/${bookId}`, {
+    fetch(`http://localhost:3000/delete-book/${bookId}`, {
       method: 'DELETE',
     })
     .then(response => response.json())
@@ -88,7 +88,7 @@
 
   function handleSearchBook(bookName) {
     // Send a GET request to search for books by name
-    fetch(`http://your-server-url.com/search-book/${bookName}`)
+    fetch(`http://localhost:3000/search-book/${bookName}`)
     .then(response => response.json())
     .then(data => {
       if (data.error) {
