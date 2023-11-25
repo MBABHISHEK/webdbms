@@ -3,47 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us</title>
     <style>
-
-     body {
+            body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-image: url('Contact us.jpeg'); /* Replace 'background-image.jpg' with your actual image file */
-    background-size: cover;
-    background-repeat: no-repeat; /* Add this line to prevent the background image from repeating */
-    color: #fff; /* Set text color to be visible against the background */
-}
-        h1 {
-            color: #fffafa;
+   /* background-image: url('Contact us.jpeg'); /* Replace 'background-image.jpg' with your actual image file */
+   /* background-size: cover;
+    background-repeat: no-repeat; *//* Add this line to prevent the background image from repeating */
+    color: #fff; 
         }
 
-        p {
-            color: #f7f1f1;
+        section {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            padding: 20px;
         }
 
-        .contact-info {
-            margin-top: 20px;
+        .contributor {
+            text-align: center;
+            margin: 10px;
         }
 
-        .contact-info p {
+        .contributor img {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            object-fit: cover;
             margin-bottom: 10px;
         }
     </style>
+    <title>Contact us</title>
 </head>
 <body>
+    <div style="height: 500px;background-image:url('Contact us.jpeg');background-size: cover;">
+    <h1 >Contact us </h1>
 
-    <h1>Contact Us</h1>
-
-    <p>If you have any questions or concerns, feel free to reach out to us using the contact information below:</p>
-
-    <div class="contact-info">
-        <p><strong>Email:</strong> info@example.com</p>
-        <p><strong>Phone:</strong> +1 (555) 123-4567</p>
-        <p><strong>Address:</strong> 123 Main Street, Cityville, State, 12345</p>
     </div>
+    <section>
+        <div class="contributor">
+            <img src="contibutor1.png" alt="Contributor 1">
+            <p>Contributor 1</p>
+        </div>
 
-    <p>Alternatively, you can use the contact form below to send us a message:</p>
+        <div class="contributor">
+            <img src="contibutor1.png" alt="Contributor 2">
+            <p>Contributor 2</p>
+        </div>
+
+        <div class="contributor">
+            <img src="contibutor1.png" alt="Contributor 2">
+            <p>Contributor 2</p>
+        </div>
+
+        <div class="contributor">
+            <img src="contibutor1.png" alt="Contributor 2">
+            <p>Contributor 2</p>
+        </div>
+
+        <!-- Add more contributor divs as needed -->
+
+    </section>
+
 </body>
 </html>
+
