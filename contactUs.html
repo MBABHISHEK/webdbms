@@ -4,14 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-            body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-   /* background-image: url('Contact us.jpeg'); /* Replace 'background-image.jpg' with your actual image file */
-   /* background-size: cover;
-    background-repeat: no-repeat; *//* Add this line to prevent the background image from repeating */
-    color: #fff; 
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #fff; 
         }
 
         section {
@@ -24,6 +21,8 @@
         .contributor {
             text-align: center;
             margin: 10px;
+            opacity: 0; /* Set initial opacity to 0 for the fade-in effect */
+            animation: fadeIn 1s forwards; /* Use the fadeIn animation with a duration of 1 second */
         }
 
         .contributor img {
@@ -32,14 +31,26 @@
             border-radius: 50%;
             object-fit: cover;
             margin-bottom: 10px;
+            animation: scaleImage 1s forwards; /* Use the scaleImage animation with a duration of 1 second */
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes scaleImage {
+            to {
+                transform: scale(1);
+            }
         }
     </style>
     <title>Contact us</title>
 </head>
 <body>
-    <div style="height: 500px;background-image:url('Contact us.jpeg');background-size: cover;">
-    <h1 >Contact us </h1>
-
+    <div style="height: 500px; background-image:url('Contact us.jpeg'); background-size: cover;">
+        <h1>Contact us</h1>
     </div>
     <section>
         <div class="contributor">
@@ -53,19 +64,17 @@
         </div>
 
         <div class="contributor">
-            <img src="contributor3.png" alt="Contributor 2">
-            <p>Contributor 2</p>
+            <img src="contributor3.png" alt="Contributor 3">
+            <p>Contributor 3</p>
         </div>
 
         <div class="contributor">
-            <img src="contibutor1.png" alt="Contributor 2">
-            <p>Contributor 2</p>
+            <img src="contibutor1.png" alt="Contributor 4">
+            <p>Contributor 4</p>
         </div>
 
         <!-- Add more contributor divs as needed -->
 
     </section>
-
 </body>
 </html>
-
