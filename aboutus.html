@@ -5,78 +5,94 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About us</title>
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('About us.jpeg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            color: black;
+            background-color: rgba(255, 255, 255, 0.0);
+            overflow: hidden; /* Prevent content from overflowing */
+        }
 
-     body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-image: url('About us.jpeg'); /* Replace 'background-image.jpg' with your actual image file */
-    background-size: cover;
-    background-repeat: no-repeat; /* Add this line to prevent the background image from repeating */
-    color:black; /* Set text color to be visible against the background */
-    background-color: rgba(255, 255, 255, 0.0)
-     }
-
-     body::before {
+        body::before {
             content: '';
-            position:fixed;
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0, 0.5); /* Adjust the opacity value (0.5) as needed */
+            background-color: rgba(255, 255, 255, 0.5);
         }
 
-        .header{
+        .header {
             text-align: center;
             color: whitesmoke;
             font-size: 35px;
+            animation: fadeIn 1s ease-out; /* Add a fade-in animation */
         }
 
         p {
             color: rgb(255, 255, 255);
         }
 
-        .text{
+        .text {
             font-family: Georgia, 'Times New Roman', Times, serif;
             font-size: 25px;
             margin-top: 20px;
             color: rgb(255, 255, 255);
+            animation: fadeIn 1s ease-out; /* Add a fade-in animation */
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2); /* Add a subtle box shadow */
+            padding: 20px;
+            border-radius: 10px;
+            background-color: rgba(0, 0, 0, 0.5); /* Add a semi-transparent background */
         }
 
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
     </style>
 </head>
 <body>
     <div class="header">
         <h1>About Us</h1>
-<div class="text">
-    <p>Welcome to IdeaSpring</p>
-    We are passionate about revolutionizing library management and empowering institutions to create seamless, efficient, and user-friendly library experiences. Our dedication to innovation 
-    and excellence has positioned us as a leading provider of cutting-edge library management solutions.<br/>
-    Our Mission
-         Empowering Libraries, Enriching Communities
-
-         Our mission is to transform the way libraries operate, making them more accessible, efficient, 
-         and engaging for both librarians and patrons. We believe in the power of knowledge
-         and the pivotal role that libraries play in fostering learning, research, and community development.
-
-<br/>
-
-We pride ourselves on staying at the forefront of technological advancements. IdeaSpring is more than just a 
-software solution; it's a commitment to innovation. Our team continually explores emerging technologies 
-to enhance the features and capabilities of our system.
-
-<br/>
-Understanding the unique needs of librarians and library users is central to our approach. IdeaSpring is designed with a 
-user-centric focus, ensuring a seamless experience for librarians managing resources and patrons 
-accessing information.
-
-<br/>
-Meet the dedicated minds behind [Your Library Management System Name]. Our team comprises seasoned
- professionals in library sciences, software development, and user experience design. Together, we
- bring a diverse set of skills and perspectives to create a comprehensive library management solution.<br/>
-
-</div>
-</div>
-</body>
+            <div class="text">
+                <p>Welcome to IdeaSpring</p>
+                We are passionate about revolutionizing library management and empowering institutions to create seamless, efficient, and user-friendly library experiences. Our dedication to innovation 
+                and excellence has positioned us as a leading provider of cutting-edge library management solutions.<br/>
+                Our Mission
+                     Empowering Libraries, Enriching Communities
+            
+                     Our mission is to transform the way libraries operate, making them more accessible, efficient, 
+                     and engaging for both librarians and patrons. We believe in the power of knowledge
+                     and the pivotal role that libraries play in fostering learning, research, and community development.
+            
+            <br/>
+            
+            We pride ourselves on staying at the forefront of technological advancements. IdeaSpring is more than just a 
+            software solution; it's a commitment to innovation. Our team continually explores emerging technologies 
+            to enhance the features and capabilities of our system.
+            
+            <br/>
+            Understanding the unique needs of librarians and library users is central to our approach. IdeaSpring is designed with a 
+            user-centric focus, ensuring a seamless experience for librarians managing resources and patrons 
+            accessing information.
+            
+            <br/>
+            Meet the dedicated minds behind [Your Library Management System Name]. Our team comprises seasoned
+             professionals in library sciences, software development, and user experience design. Together, we
+             bring a diverse set of skills and perspectives to create a comprehensive library management solution.<br/>
+            
+            </div>
+        </div>
+     </body>
 </html>
