@@ -21,8 +21,7 @@
         .contributor {
             text-align: center;
             margin: 10px;
-            opacity: 0; /* Set initial opacity to 0 for the fade-in effect */
-            animation: fadeIn 1s forwards; /* Use the fadeIn animation with a duration of 1 second */
+            transition: transform 0.3s ease; /* Add a smooth transition for the scaling effect */
         }
 
         .contributor img {
@@ -31,17 +30,20 @@
             border-radius: 50%;
             object-fit: cover;
             margin-bottom: 10px;
-            animation: scaleImage 1s forwards; /* Use the scaleImage animation with a duration of 1 second */
         }
 
-        .contributor:hover img {
-       transform: scale(1.2); /* Change the scale factor for the hover effect */
-       }
+        .contributor:hover {
+            transform: scale(1.2); /* Scale the contributor div on hover */
+        }
+
+        .contributor p {
+            margin: 0; /* Remove default paragraph margin */
+        }
     </style>
     <title>Contact us</title>
 </head>
 <body>
-    <div style="height: 500px; background-image:url('Contact us.jpeg'); background-size: cover;">
+    <div style="height: 500px;background-image:url('Contact us.jpeg');background-size: cover;">
         <h1>Contact us</h1>
     </div>
     <section>
