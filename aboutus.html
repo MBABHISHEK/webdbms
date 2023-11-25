@@ -44,20 +44,21 @@
             margin-top: 20px;
             color: rgb(255, 255, 255);
             animation: fadeIn 1s ease-out; /* Add a fade-in animation */
-            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2); /* Add a subtle box shadow */
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5); /* Add a subtle box shadow */
             padding: 20px;
-            border-radius: 10px;
-            background-color: rgba(0, 0, 0, 0.5); 
+            border-radius: 50px;
+            border: solid 1px black; 
+            background-color: rgba(0, 0, 0, 0.8); 
             /* Add a semi-transparent background */
         }
 
-        @keyframes fadeIn {
+          @keyframes fadeIn {
             from {
-                opacity: 1;
+                opacity: 0;
                 transform: translateY(-20px);
             }
             to {
-                opacity: 0;
+                opacity: 1;
                 transform: translateY(0);
             }
         }
