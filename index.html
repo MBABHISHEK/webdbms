@@ -127,8 +127,17 @@
         .logo-container img {
             width: 150px; /* Adjust the width as needed */
             height: auto; /* Maintain aspect ratio */
+            animation: rotateLogo 5s infinite linear; /* Add the rotation animation */
         }
 
+        @keyframes rotateLogo {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
     </style>
 </head>
 <body>
