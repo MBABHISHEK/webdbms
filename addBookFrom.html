@@ -198,6 +198,7 @@ button:hover {
               <th>Subject ID</th>
             </tr>
           </thead>
+          <div id="reslut"></div>
           <tbody id="resultTableBody"></tbody>
         </table>
       </div>
@@ -206,7 +207,7 @@ button:hover {
     <div id="searchResults" style="display: none;">
       <label for="bookId">
         Book ID:
-        <input type="text" id="deleteId" name="Book_id" required>
+        <input type="text" id="search_id" name="Book_id" required>
       </label>
       <button type="button" onclick="handleSearchBook()">Search</button>
       <h2>Search Results</h2>
@@ -220,7 +221,7 @@ button:hover {
             <th>Subject ID</th>
           </tr>
         </thead>
-        <tbody id="resultTableBody"></tbody>
+        <tbody id="resultTableBody1"></tbody>
       </table>
     </div>
   </>
@@ -246,7 +247,7 @@ button:hover {
       document.getElementById('delete-book-form-container').style.display = 'none';
       document.getElementById('searchResults').style.display = 'block';
       document.getElementById('showResults').style.display = 'none';
-      handleSearchBook();
+      console.log('hi');
     }
 
     function displayResults(){
@@ -257,17 +258,6 @@ button:hover {
       showbooks();
 
     }
-
-
-    function handleDeleteBook() {
-      // Your logic to handle book deletion goes here
-      const deleteBookId = document.getElementById('deleteBookId').value;
-      console.log('Deleting book with ID:', deleteBookId);
-      // You can perform further actions, such as making an API call or updating the UI
-    }
-
-
-
     function handleFormSubmit() {
     const bookData = {
       Book_id: document.getElementById('bookId').value,
@@ -297,8 +287,9 @@ button:hover {
     });
   }
   function handleDeleteBook(bookId) {
-    // Send a DELETE request to delete a book by ID
-    fetch(`http://localhost:3000/delete-book/${bookId}`, {
+    const deleteBookId = document.getElementById('deleteBookId').value;
+      console.log('Deleting book with ID:', deleteBookId);
+    fetch(`http://localhost:3000/delete-book/${deleteBookId}`, {
       method: 'DELETE',
     })
     .then(response => response.json())
@@ -312,7 +303,7 @@ button:hover {
   }  
 
   function handleSearchBook() {
-    bookId=document.getElementById('deleteId').value;
+    bookId=document.getElementById('search_id').value;
     console.log(bookId);
     fetch(`http://localhost:3000/search-book/${bookId}`)
     .then(response => response.json())
@@ -321,7 +312,7 @@ button:hover {
         console.error('Error searching for books:', data.error);
       } else {
         console.log('Books found:', data);
-        displayBooks(books);
+        displayBooks1(data);
         // You can display the search results or perform additional actions here
       }
     })
@@ -332,7 +323,6 @@ button:hover {
     
 
   function showbooks(){
-
     fetch('http://localhost:3000/get-all-books')
     .then(response => response.json())
     .then(data => {
@@ -340,6 +330,7 @@ button:hover {
       if (data.error) {
         console.error('Error searching for books:', data.error);
       } else {
+        console.log('Books found:', data);
         displayBooks(data);
         // You can display the search results or perform additional actions here
       }
@@ -349,6 +340,29 @@ button:hover {
     });
 
 
+  }
+
+  function displayBooks1(books)
+  {
+    const resultable=document.getElementById('resultTableBody1');
+    resultable.innerHTML='';
+    
+    books.forEach(book=> {
+       const row= resultable.insertRow(); 
+      
+
+       const cell1= row.insertCell(0);
+       const cell2= row.insertCell(1); 
+       const cell3= row.insertCell(2); 
+       const cell4= row.insertCell(3); 
+       const cell5= row.insertCell(4);  
+      
+       cell1.textContent=book.Book_id;
+       cell2.textContent=book.Book_title;
+       cell3.textContent=book.Book_author;
+       cell4.textContent=book.Book_edition;
+       cell5.textContent=book.categorised;
+    });
   }
   function displayBooks(books)
   {

@@ -67,7 +67,18 @@ app.post('/add-book', (req, res) => {
   });
 
 // ... (other route handlers)
-
+app.delete('/delete-book/:book_id', (req, res) => {
+  const book_id = req.params.book_id;
+  console.log(book_id);
+  connection.query('DELETE FROM books WHERE book_id = ?', [book_id], (err) => {
+    if (err) {
+      console.error('Error deleting book:', err);
+      res.status(500).json({ error: 'Internal Server Error' });
+    } else {
+      res.json({ message: 'eBook deleted successfully' });
+    }
+  });
+});
 
 app.delete('http://localhost/delete-book/:bookId', (req, res) => {
     const bookId = req.params.bookId;
@@ -81,14 +92,15 @@ app.delete('http://localhost/delete-book/:bookId', (req, res) => {
     });
   });
   
-  app.get('http://localhost/search-book/:bookId', (req, res) => {
+  app.get('/search-book/:bookId', (req, res) => {
     const bookId = req.params.bookId;
     console.log(bookId);
-    connection.all('SELECT * FROM Books WHERE Book_ID LIKE ?', [`%${bookName}%`], (err, rows) => {
+    connection.query('SELECT * FROM Books WHERE book_id LIKE ?', [`%${bookId}%`], (err, rows) => {
       if (err) {
         console.error('Error searching for books:', err);
         res.status(500).json({ error: 'Internal Server Error' });
       } else {
+        console.log(rows);
         res.json(rows);
       }
     });
@@ -145,6 +157,19 @@ app.post('/add-ebook', (req, res) => {
       }
     }
   );
+});
+
+app.delete('/delete-book/:book_id', (req, res) => {
+  const book_id = req.params.book_id;
+  console.log(book_id);
+  connection.query('DELETE FROM books WHERE book_id = ?', [book_id], (err) => {
+    if (err) {
+      console.error('Error deleting ebook:', err);
+      res.status(500).json({ error: 'Internal Server Error' });
+    } else {
+      res.json({ message: 'eBook deleted successfully' });
+    }
+  });
 });
 
 app.delete('/delete-ebook/:ebook_id', (req, res) => {
