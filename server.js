@@ -93,6 +93,14 @@ app.delete('http://localhost/delete-book/:bookId', (req, res) => {
     });
   });
   
+  app.get('http://localhost/serachbok',function (req, res){
+      connection.query('SELECT * FROM Books',function (err,results){
+        if(err) console.log(err);
+        res.render(__dirnames+"/serachbok",{Books:results});
+      });
+      
+
+  });
   app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
   });
