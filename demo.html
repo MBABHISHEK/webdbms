@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <title>Staff Management</title>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body {
             margin: 0;
             padding: 0;
-            background-image: url("MemberForm.jpeg");
+            background-image: url('StaffForm.JPG'); /* Replace with your background image URL */
             background-size: cover;
             font-family: Arial, sans-serif;
         }
@@ -27,69 +28,43 @@
             margin-left: 250px;
             padding: 20px;
         }
-
-        .menu-item {
-            padding: 10px 20px;
-            color: #fff;
-            text-decoration: none;
-            display: block;
-            transition: background 0.3s;
-        }
-
-        .menu-item:hover {
-            background-color: #495057;
-        }
-
-        .quick-stats {
-            margin-top: 20px;
-            padding: 10px;
-            background-color: #495057;
-            color: #fff;
-            border-radius: 5px;
-        }
-
         .sidebar-buttons {
-            margin-top: 20px;
-        }
+      margin-top: 20px;
+    }
 
-        .btn-sidebar {
-            width: 100%;
-            margin-bottom: 10px;
-            transition: margin-left 0.3s;
-        }
+    .btn-sidebar {
+      width: 100%;
+      margin-bottom: 10px;
+      transition: margin-left 0.3s; /* Add transition for margin-left property */
+    }
 
-        .btn-sidebar:hover {
-            margin-left: 10px;
-        }
-
-        .main1 {
-            display: none;
-        }
-
-        .add-member-form-container {
-            display: flex;
+    .btn-sidebar:hover {
+      margin-left: 10px; /* Adjust the value based on your preference */
+    }
+        .add-staff-form-container,
+        .update-staff-form-container,
+        .delete-staff-form-container {
+            display: none; /* Initially hide the forms */
             justify-content: center;
             align-items: center;
             height: 100vh;
-            margin: auto;
         }
 
-        .add-member-form {
+        .add-staff-form,
+        .update-staff-form,
+        .delete-staff-form {
             background-color: rgba(255, 255, 255, 0.8);
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-            margin: auto;
+            width: 400px; /* Adjust width as needed */
         }
 
-        input {
-            width: 100%;
-            padding: 8px;
+        .form-row {
             margin-bottom: 10px;
-            box-sizing: border-box;
         }
 
-        button {
+        .btn-form {
             background-color: #007bff;
             color: #fff;
             padding: 10px;
@@ -97,184 +72,151 @@
             border-radius: 4px;
             cursor: pointer;
             font-size: 16px;
+            width: 100%;
         }
 
-        button:hover {
+        .btn-form:hover {
             background-color: #0056b3;
         }
-
-        .delete-book-form-container {
-            display: none;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        th,
-        td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #333;
-            color: white;
-        }
     </style>
-    <title>Sidebar Dashboard with Buttons</title>
 </head>
-
 <body>
-    <div class="sidebar">
-        <div class="menu-item">MEMBERSHIP SERVICES</div>
-        <div class="sidebar-buttons">
-            <button class="btn btn-primary btn-sidebar" onclick="showEnrollForm()">ENROLL MEMBERSHIP</button>
-            <button class="btn btn-secondary btn-sidebar" onclick="showDeleteForm()">DELETE MEMBERSHIP</button>
-            <button class="btn btn-primary btn-sidebar" onclick="showSearchForm()">SEARCH MEMBERSHIP</button>
-            <!-- Add more buttons as needed -->
-        </div>
+<div class="sidebar">
+    <div class="menu-item">STAFF SERVICES </div>
+    <div class="sidebar-buttons">
+        <button class="btn btn-primary btn-sidebar" onclick="showInsertForm()">ADD STAFF</button>
+        <button class="btn btn-secondary btn-sidebar" onclick="showUpdateForm()">UPDATE STAFF</button>
+        <button class="btn btn-danger btn-sidebar" onclick="showDeleteForm()">DELETE STAFF</button>
     </div>
+</div>
 
-    <div class="main-content">
-        <div class="main1" id="main1">
-            <div class="add-member-form-container" id="add-member-form-container">
-                <form id="add-member-form" class="add-member-form">
-                    <label for="memberId">
-                        MEMBERSHIP ID:
-                        <input type="text" id="MemberId" name="Member_id" required>
-                      </label>
-                      <br>
-                      <label for="firstname">
-                        firstname
-                        <input type="text" id="firstname" name="first_name" required>
-                      </label>
-                      <br>
-                      <label for="lastname">
-                        lastname
-                        <input type="text" id="lastname" name="last_name" required>
-                      </label>
-                      <br>
-                      <label for="email">
-                        email
-                        <input type="text" id="email" name="email" required>
-                      </label>
-                      <br>
-                      <label for="phoneno">
-                        phoneno
-                        <input type="text" id="phoneno" name="phone_no" required>
-                      </label>
-                      <label for="address">
-                          address
-                          <input type="text" id="address" name="address" required>
-                        </label>
-                      <label for="NextRenewal">
-                          NextRenewal
-                          <input type="text" id="NextRenewal" name="Next_renewal" required>
-                      </label>
-                      <label for="loginid">
-                          loginid
-                          <input type="text" id="loginid" name="login_id" required>
-                      </label>
-                      <label for="registeredby">
-                          registeredby
-                          <input type="text" id="registeredby" name="registered_by" required>
-                      </label>
-                      <button type="button" onclick="handleFormEnroll()">Enroll Membership</button>
-                      <br>
+<div class="main-content">
+    <div class="add-staff-form-container">
+                <form id="add-staff-form" class="add-staff-form">
+                    <div class="form-row">
+                        <div class="col">
+                            <label for="staffId">Staff ID:</label>
+                            <input type="text" class="form-control" id="staffId" name="staff_id" required>
+                        </div>
+                        <div class="col">
+                            <label for="firstName">First Name:</label>
+                            <input type="text" class="form-control" id="firstName" name="first_name" required>
+                        </div>
+                    </div>
+            
+                    <div class="form-row">
+                        <div class="col">
+                            <label for="lastName">Last Name:</label>
+                            <input type="text" class="form-control" id="lastName" name="last_name" required>
+                        </div>
+                        <div class="col">
+                            <label for="gender">Gender:</label>
+                            <select class="form-control" id="gender" name="gender" required>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Others">Others</option>
+                            </select>
+                        </div>
+                    </div>
+            
+                    <div class="form-row">
+                        <div class="col">
+                            <label for="designation">Designation:</label>
+                            <input type="text" class="form-control" id="designation" name="designation" required>
+                        </div>
+                        <div class="col">
+                            <label for="phoneNo">Phone Number:</label>
+                            <input type="tel" class="form-control" id="phoneNo" name="phone_no" required>
+                        </div>
+                    </div>
+            
+                    <div class="form-row">
+                        <div class="col">
+                            <label for="address">Address:</label>
+                            <textarea class="form-control" id="address" name="address" required></textarea>
+                        </div>
+                        <div class="col">
+                            <label for="joiningYear">Joining Year:</label>
+                            <input type="number" class="form-control" id="joiningYear" name="joining_year" required>
+                        </div>
+                    </div>
+            
+                    <button type="button" class="btn btn-primary" onclick="handleFormSubmit()">Add Staff</button>
                 </form>
-            </div>
-        </div>
-
-        <div class="delete-book-form-container" id="delete-membership-form-container">
-            <form id="delete-book-form" class="delete-book-form">
-                <label for="deleteMembershipId">
-                    MEMBERSHIP ID to Delete:
-                    <input type="text" id="deleteMembershipId" name="deleteMembershipId" required>
-                </label>
-                <br>
-                <button type="button" onclick="handleDeleteMember()">Delete Membership</button>
-            </form>
-        </div>
-
-        <div id="searchResults" style="display: none;">
-            <h2>Search Results</h2>
-            <table id="resultTable">
-              <thead>
-                <tr>
-                  <th>Membership ID</th>
-                  <th>first name</th>
-                  <th>last name</th>
-                  <th>email</th>
-                  <th>phone no</th>
-                  <th>address</th>
-                  <th>Next renewal</th>
-                  <th>loginid</th>
-                  <th>registeredby</th>
-                </tr>
-              </thead>
-              <tbody id="resultTableBody"></tbody>
-            </table>
-          </div>
-        </div>
     </div>
 
-    <script>
-        function showEnrollForm() {
-            document.getElementById('main1').style.display = 'block';
-            document.getElementById('delete-membership-form-container').style.display = 'none';
-            document.getElementById('searchResults').style.display = 'none';
-        }
+    <div class="update-staff-form-container">
+        <form id="update-staff-form" class="update-staff-form">
+            <div class="form-row">
+                <label for="updateStaffId">Staff ID to Update:</label>
+                <input type="text" class="form-control" id="updateStaffId" name="update_staff_id" required>
+            </div>
+            <!-- ... (other fields for updating) ... -->
+            <button type="button" class="btn btn-secondary btn-form" onclick="handleUpdateSubmit()">Update Staff</button>
+        </form>
+    </div>
 
-        function showDeleteForm() {
-            document.getElementById('main1').style.display = 'none';
-            document.getElementById('delete-membership-form-container').style.display = 'block';
-            document.getElementById('searchResults').style.display = 'none';
-        }
+    <div class="delete-staff-form-container">
+        <form id="delete-staff-form" class="delete-staff-form">
+            <div class="form-row">
+                <label for="deleteStaffId">Staff ID to Delete:</label>
+                <input type="text" class="form-control" id="deleteStaffId" name="delete_staff_id" required>
+            </div>
+            <button type="button" class="btn btn-danger btn-form" onclick="handleDeleteSubmit()">Delete Staff</button>
+        </form>
+    </div>
+</div>
 
-        function showSearchForm() {
-            document.getElementById('main1').style.display = 'none';
-            document.getElementById('delete-membership-form-container').style.display = 'none';
-            document.getElementById('searchResults').style.display = 'block';
-        }
+<!-- Include Bootstrap JS and dependencies -->
+<script>
+    function showInsertForm() {
+        hideAllForms();
+        document.querySelector('.add-staff-form-container').style.display = 'flex';
+    }
 
-        function handleDeleteMember() {
-            const deleteMembershipId = document.getElementById('deleteMembershipId').value;
-            console.log('Deleting Membership with ID:', deleteMembershipId);
-            // You can perform further actions, such as making an API call or updating the UI
-        }
+    function showUpdateForm() {
+        hideAllForms();
+        document.querySelector('.update-staff-form-container').style.display = 'flex';
+    }
 
-        function handleFormEnroll() {
-            const membershipData = {
-                Member_id: document.getElementById('MemberId').value,
-                first_name: document.getElementById('firstname').value,
-                // Add other fields similarly
-            };
+    function showDeleteForm() {
+        hideAllForms();
+        document.querySelector('.delete-staff-form-container').style.display = 'flex';
+    }
 
-            // Send a POST request to enroll a membership
-            fetch('http://localhost:3000/enroll-membership', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(membershipData),
-                })
-                .then(response => response.json())
-                .then(data => {
-                    console.log('Membership enrolled successfully:', data);
-                    alert('Membership enrolled successfully');
-                    // You can perform additional actions here if needed
-                })
-                .catch(error => {
-                    console.error('Error enrolling membership:', error);
-                    alert('Membership not enrolled successfully');
-                });
-        }
-    </script>
+    function hideAllForms() {
+        document.querySelector('.add-staff-form-container').style.display = 'none';
+        document.querySelector('.update-staff-form-container').style.display = 'none';
+        document.querySelector('.delete-staff-form-container').style.display = 'none';
+    }
 
-</body>
+    function handleFormSubmit() {
+        const staffData = {
+            staff_id: document.getElementById('staffId').value,
+            first_name: document.getElementById('firstName').value,
+            last_name: document.getElementById('lastName').value,
+            gender: document.getElementById('gender').value,
+            designation: document.getElementById('designation').value,
+            phone_no: document.getElementById('phoneNo').value,
+            address: document.getElementById('address').value,
+            joining_year: document.getElementById('joiningYear').value,
+        };
 
-</html>
+        console.log('Staff added successfully:', staffData);
+        // You can perform additional actions here if needed
+    }
+    function handleUpdateSubmit() {
+        const updateStaffId = document.getElementById('updateStaffId').value;
+        // ... (get other update fields)
+
+        console.log('Updating staff with ID:', updateStaffId);
+        // You can perform additional actions here if needed
+    }
+
+    function handleDeleteSubmit() {
+        const deleteStaffId = document.getElementById('deleteStaffId').value
+    }
+</script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.8/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
