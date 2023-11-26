@@ -81,9 +81,10 @@ app.delete('http://localhost/delete-book/:bookId', (req, res) => {
     });
   });
   
-  app.get('http://localhost/search-book/:bookName', (req, res) => {
-    const bookName = req.params.bookName;
-    connection.all('SELECT * FROM Books WHERE Book_title LIKE ?', [`%${bookName}%`], (err, rows) => {
+  app.get('http://localhost/search-book/:bookId', (req, res) => {
+    const bookId = req.params.bookId;
+    console.log(bookId);
+    connection.all('SELECT * FROM Books WHERE Book_ID LIKE ?', [`%${bookName}%`], (err, rows) => {
       if (err) {
         console.error('Error searching for books:', err);
         res.status(500).json({ error: 'Internal Server Error' });
@@ -93,14 +94,72 @@ app.delete('http://localhost/delete-book/:bookId', (req, res) => {
     });
   });
   
-  app.get('http://localhost/serachbok',function (req, res){
-      connection.query('SELECT * FROM Books',function (err,results){
-        if(err) console.log(err);
-        res.render(__dirnames+"/serachbok",{Books:results});
-      });
-      
+  app.get('/get-all-books', function (req, res) {
+    connection.query('SELECT * FROM Books', function (err, results) {
+        if (err) {
+            console.log(err);
+            res.json({ error: 'Error retrieving books' });
+        } else {
+          console.log(results);
+            res.json(results);
+        }
+    });
+});
 
+app.post('/add-ebook', (req, res) => {
+  const ebookData = req.body;
+   console.log(ebookData);
+  // Check if subject_id exists in the Department table
+  connection.query(  // Change 'db' to 'connection' here
+    'SELECT COUNT(*) AS count FROM Department WHERE subject_id = ?',
+    [ebookData.category],
+    (err, result) => {
+      if (err) {
+        console.error('Error checking category:', err);
+        return res.status(500).json({ error: 'Internal Server Error' });
+      }
+      console.log(result[0].count);
+      chek=parseInt(result.count);
+      //console.log(chek);
+      //const subjectExists = chek > 0;
+      //console.log(results); // Assuming results is an array of RowDataPacket objects
+      const subjectExists = result[0].count > 0; // Accessing count property from the first result
+      console.log(result[0].count);
+      console.log(subjectExists);
+      if (subjectExists) {
+        // Subject exists, proceed with adding the book
+        connection.query(  // Change 'db' to 'connection' here
+          'INSERT INTO ebooks (ebook_id, eBook_title, author, category, url,ratings_value,format) VALUES (?, ?, ?, ?, ?,?,?)',
+          [ebookData.ebook_id, ebookData.eBook_title, ebookData.author, ebookData.category, ebookData.url,ebookData.ratings_value,ebookData.format],
+          (insertErr) => {
+            if (insertErr) {
+              console.error('Error adding ebook:', insertErr);
+              return res.status(500).json({ error: 'Internal Server Error' });
+            }
+            res.json({ message: 'eBook added successfully' });
+          }
+        );
+      } else {
+        // Subject does not exist, return an error
+        res.status(400).json({ error: 'Ebook does not exist' });
+      }
+    }
+  );
+});
+
+app.delete('/delete-ebook/:ebook_id', (req, res) => {
+  const ebook_id = req.params.ebook_id;
+  console.log(ebook_id);
+  connection.query('DELETE FROM ebooks WHERE ebook_id = ?', [ebook_id], (err) => {
+    if (err) {
+      console.error('Error deleting ebook:', err);
+      res.status(500).json({ error: 'Internal Server Error' });
+    } else {
+      res.json({ message: 'eBook deleted successfully' });
+    }
   });
+});
+
   app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
   });
