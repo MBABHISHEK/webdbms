@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-image: url("membership form.jpg");
+      background-size: cover;
+      font-family: Arial, sans-serif;
+    }
+
+    .sidebar {
+      height: 100%;
+      width: 250px;
+      position: fixed;
+      background-color: #343a40;
+      padding-top: 20px;
+      color: #fff;
+    }
+
+    .main-content {
+      margin-left: 250px;
+      padding: 20px;
+    }
+
+    .menu-item {
+      padding: 10px 20px;
+      color: #fff;
+      text-decoration: none;
+      display: block;
+      transition: background 0.3s;
+    }
+
+    .menu-item:hover {
+      background-color: #495057;
+    }
+
+    .quick-stats {
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #495057;
+      color: #fff;
+      border-radius: 5px;
+    }
+
+    .sidebar-buttons {
+      margin-top: 20px;
+    }
+
+    .btn-sidebar {
+      width: 100%;
+      margin-bottom: 10px;
+      transition: margin-left 0.3s; /* Add transition for margin-left property */
+    }
+
+    .btn-sidebar:hover {
+      margin-left: 10px; /* Adjust the value based on your preference */
+    }
+
+    .main1{
+        display: none;
+    }
+    .add-book-form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: auto;
+}
+
+.add-book-form {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    margin: auto;
+
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+
+    .delete-book-form-container {
+      display: none;
+    }
+
+    table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #333;
+            color: white;
+        }
+  </style>
+  <title>Sidebar Dashboard with Buttons</title>
+</head>
+
+<body>
+  <div class="sidebar">
+
+    <div class="menu-item">MEMBERSHIP SERVICES</div>
+    <div class="sidebar-buttons">
+      <button class="btn btn-primary btn-sidebar" onclick="showInsertForm()">ENROLL MEMBERSHIP</button>
+      <button class="btn btn-secondary btn-sidebar" onclick="showDeleteForm()">DELETE MEMBERSHIP</button>
+      <button class="btn btn-primary btn-sidebar" onclick="showSearchForm()">SERACH MEMBERSHIP</button>
+      <!-- Add more buttons as needed -->
+    </div>
+  </div>
+</div>
+  <div class="main-content">
+    <div class="main1" id="main1">
+    <div class="add-book-form-container" id="add-book-form-container">
+      <form id="add-book-form" class="add-book-form">
+        <label for="bookId">
+          MEMBERSHIP ID:
+          <input type="text" id="MemberId" name="Member_id" required>
+        </label>
+        <br>
+        <label for="firstname">
+          firstname
+          <input type="text" id="firstname" name="first_name" required>
+        </label>
+        <br>
+        <label for="lastname">
+          lastname
+          <input type="text" id="lastname" name="last_name" required>
+        </label>
+        <br>
+        <label for="email">
+          email
+          <input type="text" id="email" name="email" required>
+        </label>
+        <br>
+        <label for="phoneno">
+          phoneno
+          <input type="text" id="phoneno" name="phone_no" required>
+        </label>
+        <label for="address">
+            address
+            <input type="text" id="address" name="address" required>
+          </label>
+        <label for="NextRenewal">
+            NextRenewal
+            <input type="text" id="NextRenewal" name="Next_renewal" required>
+        </label>
+        <label for="loginid">
+            loginid
+            <input type="text" id="loginid" name="login_id" required>
+        </label>
+        <label for="registeredby">
+            registeredby
+            <input type="text" id="registeredby" name="registered_by" required>
+        </label>
+        <button type="button" onclick="handleFormEnroll()">Enroll Membership</button>
+        <br>
+      </form>
+    </div>
+    </div>
+    
+    <div class="delete-book-form-container" id="delete-book-form-container">
+        <form id="delete-book-form" class="delete-book-form">
+          <label for="deleteBookId">
+            MEMBERSHIP ID to Delete:
+            <input type="text" id="deleteMembershipId" name="deleteMembershipId" required>
+          </label>
+          <br>
+          <button type="button" onclick="handleDeleteMember()">Delete Book</button>
+        </form>
+      </div>
+
+    <div id="searchResults" style="display: none;">
+      <h2>Search Results</h2>
+      <table id="resultTable">
+        <thead>
+          <tr>
+            <th>Membership ID</th>
+            <th>first name</th>
+            <th>last name</th>
+            <th>email</th>
+            <th>phone no</th>
+            <th>address</th>
+            <th>Next renewal</th>
+            <th>loginid</th>
+            <th>registeredby</th>
+          </tr>
+        </thead>
+        <tbody id="resultTableBody"></tbody>
+      </table>
+    </div>
+  </>
+
+  <script>
+   function showEnrollForm() {
+      document.getElementById('main1').style.display = 'block';
+      document.getElementById('delete-membership-form-container').style.display = 'none';
+      document.getElementById('searchResults').style.display = 'none';
+    }
+
+    function showDeleteForm() {
+      document.getElementById('main1').style.display = 'none';
+      document.getElementById('delete-membership-form-container').style.display = 'block';
+      document.getElementById('searchResults').style.display = 'none';
+    }
+
+    function showSearchForm() {
+      document.getElementById('main1').style.display = 'none';
+      document.getElementById('delete-membership-form-container').style.display = 'none';
+      document.getElementById('searchResults').style.display = 'block';
+    }
+
+    function handleDeleteMember() {
+      // Your logic to handle book deletion goes here
+      const deleteBookId = document.getElementById('deleteMemberId').value;
+      console.log('Deleting Member with ID:', deleteMemberId);
+      // You can perform further actions, such as making an API call or updating the UI
+    }
+
+
+
+    function handleFormSubmit() {
+    const bookData = {
+      Member_id: document.getElementById('MemberId').value,
+      first_name: document.getElementById('first name').value,
+      last_name: document.getElementById('lst name').value,
+      email: document.getElementById('email').value,
+      phone_no: document.getElementById('phone no').value,
+      address: document.getElementById('address').value,
+      Next_renewal:document.getElementById('Next renewal').value,
+      login_id:document.getElementById('loginid').value,
+      registered_by:document.getElementById('registeredby').value,
+    };
+    };
+     console.log(bookData);
+    // Send a POST request to add a book
+    fetch('http://localhost:3000/add-book', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(bookData),
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Book added successfully:', data);
+      alert('Book added successfully');
+      // You can perform additional actions here if needed
+    })
+    .catch(error => {
+      console.error('Error adding book:', error);
+      alert('Book notadded successfully subject id is wrong');
+    });
+  }
+  function handleDeleteBook(bookId) {
+    // Send a DELETE request to delete a book by ID
+    fetch(`http://localhost:3000/delete-book/${bookId}`, {
+      method: 'DELETE',
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Book deleted successfully:', data);
+      // You can perform additional actions here if needed
+    })
+    .catch(error => {
+      console.error('Error deleting book:', error);
+    });
+  }  
+
+  function handleSearchBook(bookName) {
+    // Send a GET request to search for books by name
+    fetch(`http://localhost:3000/search-book/${bookName}`)
+    .then(response => response.json())
+    .then(data => {
+      if (data.error) {
+        console.error('Error searching for books:', data.error);
+      } else {
+        console.log('Books found:', data);
+        // You can display the search results or perform additional actions here
+      }
+    })
+    .catch(error => {
+      console.error('Error searching for books:', error);
+    });
+  }
+
+
+  </script>
+
+</body>
+
+</html>

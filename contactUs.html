@@ -8,7 +8,36 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            color: #fff; 
+            color: #333;
+            background-color: #f4f4f4;
+        }
+
+        .contact {
+            text-align: center;
+            padding: 20px;
+            background-color: #555;
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+        }
+
+        h1 {
+            margin-bottom: 10px;
+            color: #fff;
+            font-size: 36px; /* Increased font size */
+        }
+
+        .contact-info {
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0;
+            animation: fadeIn 1s forwards 0.5s;
+            font-size: 18px; /* Increased font size */
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
         }
 
         section {
@@ -16,12 +45,15 @@
             justify-content: space-around;
             flex-wrap: wrap;
             padding: 20px;
+            opacity: 0;
+            animation: fadeIn 1s forwards 1s;
         }
 
         .contributor {
             text-align: center;
             margin: 10px;
-            transition: transform 0.3s ease; /* Add a smooth transition for the scaling effect */
+            transition: transform 0.3s ease, color 0.3s ease;
+            font-size: 16px; /* Increased font size */
         }
 
         .contributor img {
@@ -30,50 +62,54 @@
             border-radius: 50%;
             object-fit: cover;
             margin-bottom: 10px;
+            opacity: 0;
+            animation: fadeIn 1s forwards 0.5s;
         }
 
         .contributor:hover {
-            transform: scale(1.1); /* Scale the contributor div on hover */
+            transform: scale(1.1);
+            color: #009688;
         }
 
         .contributor p {
-            margin: 0; /* Remove default paragraph margin */
+            margin: 0;
+            color: #444;
         }
     </style>
     <title>Contact us</title>
 </head>
 <body>
-    <div style="height: 500px;background-image:url('Contact us.jpeg');background-size: cover;">
+    <div class="contact">
         <h1>Contact us</h1>
+        <p class="contact-info">
+            Dear Library Patron,
 
-       <p> Dear Library Patron,
+            Thank you for reaching out to us! We appreciate your interest in our Library Management System. If you have any questions, concerns, or feedback, please don't hesitate to contact us. Our dedicated team is here to assist you.
 
-Thank you for reaching out to us! We appreciate your interest in our Library Management System. If you have any questions, concerns, or feedback, please don't hesitate to contact us. Our dedicated team is here to assist you.
+            Feel free to reach us through the following channels:
 
-Feel free to reach us through the following channels:
+            Email: ideaspring@gmail.com
 
-Email: ideaspring@gmail.com
+            Phone: 0821-2345672 8457857983
 
-Phone: 0821-2345672                                                                                                                                                                                        8457857983
+            Address:
+            466, Gokulam Main Road
+            Gokulam,
+            Mysore, Karnataka 570002
+            India
 
-Address:
-466, Gokulam Main Road
-Gokulam,
-Mysore, Karnataka 570002
-India
+            We strive to provide the best possible service, and your input is invaluable to us. Whether you have a suggestion for improvement or need assistance with a specific issue, we're here to help.
 
-We strive to provide the best possible service, and your input is invaluable to us. Whether you have a suggestion for improvement or need assistance with a specific issue, we're here to help.
+            Thank you for being a valued member of our library community!
 
-Thank you for being a valued member of our library community!
-
-Best regards,
-Ideaspring Team
-       </p>
+            Best regards,
+            Ideaspring Team
+        </p>
     </div>
     <section>
         <div class="contributor">
             <img src="contitbutor2.png" alt="Contributor 1">
-            <p style="color: black;">sinchana</p>
+            <p>sinchana</p>
         </div>
 
         <div class="contributor">
@@ -88,7 +124,7 @@ Ideaspring Team
 
         <div class="contributor">
             <img src="contibutor1.png" alt="Contributor 4">
-            <p>ABHISHEK M B 4</p>
+            <p>ABHISHEK M B</p>
         </div>
 
         <!-- Add more contributor divs as needed -->
