@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Transportation Management</title>
+</head>
+<body>
+  <div class="container">
+    <h1>Transportation Management</h1>
+    <form id="transportationForm">
+      
+        <label for="">transport_id</label>
+        <input type="number" id="transport_id" required>
+        
+      <label for="transportation type">transport_type</label>
+      <input type="text" id="transport_type" required>
+
+      <label for="departure date">departure_date:</label>
+      <input type="date" id="departure_date" required>
+
+      <label for="arrival date">arrival_date</label>
+      <input type="date" id="arrival_date" required>
+
+      <label for="price">price</label>
+      <input type="number" id="price" required>
+      
+      <label for="travelagencyid">travelagency_id</label>
+      <input type="number" id="travelagency_id" required>
+
+      <button type="button" onclick="inserttransportation()">submit</button>
+    </form>
+
+   
+
+    <table id="transportationTable">
+      <thead>
+        <tr>
+          <th>transport id</th>
+          <th>transport type</th>
+          <th>departure date</th>
+          <th>arrival date</th>
+          <th>price</th>
+          <th>travelagency id</th>
+        </tr>
+      </thead>
+      <tbody id="transportationTableBody"></tbody>
+    </table>
+  </div>
+
+  <script >
+    const transportationForm = document.getElementById('transportationForm');
+const transportationTableBody = document.getElementById('transportationTableBody');
+
+// Replace this URL with your actual server URL
+const serverURL = 'http://localhost:3000/transportations';
+
+function inserttransportation() {
+  const transport_id = document.getElementById('transport_id').value;
+  const transport_type = document.getElementById('transport_type').value;
+  const departure_date = document.getElementById('departure_date').value;
+  const arrival_date = document.getElementById('arrival_date').value;
+    const price = document.getElementById('price').value;
+
+  if (!transport_id || !transport_type || !departure_date || !arrival_date || !price || !travelagency_id) {
+    alert('Please fill in all fields.');
+    return;
+  }
+
+  const newtransportation = {
+    transport_id,
+    transport_type,
+    departure_date,
+    arrival_date,
+    price,
+  };
+
+  fetch(serverURL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(newtransportation),
+  })
+    .then(response => response.json())
+    .then(data => {
+      console.log('transportation added successfully:', data);
+      clearForm();
+      gettransportations();
+    })
+    .catch(error => console.error('Error adding transportation:', error));
+}
+
+function gettransportations() {
+  fetch(serverURL)
+    .then(response => response.json())
+    .then(data => {
+      displaytransportations(data);
+    })
+    .catch(error => console.error('Error fetching transportations:', error));
+}
+
+function displaytransportations(users) {
+  transportationTableBody.innerHTML = '';
+
+  transportations.forEach(transportation => {
+    const newRow = `
+      <tr>
+        <td>${transportation.transport_id}</td>
+        <td>${transportation.transport_type}</td>
+        <td>${transportation.depature_date}</td>
+        <td>${transportation.arrival_date}</td>
+        <td>${transportation.price}</td>
+        <td>${transportation.travelagency_id}</td>
+        
+        <td><button onclick="deleteUser('${transportation.transport_id}')">Delete</button></td>
+      </tr>
+    `;
+    transportationTableBody.innerHTML += newRow;
+  });
+}
+
+function clearForm() {
+  transportationForm.reset();
+}
+
+
+// Initial load of users
+gettransportations();
+
+  </script>
+</body>
+</html>
