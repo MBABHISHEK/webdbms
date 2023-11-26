@@ -15,7 +15,7 @@
         .contact {
             text-align: center;
             padding: 20px;
-            background-color:#FFFF00;
+            background-color:#333;
             opacity: 0;
             animation: fadeIn 2s forwards;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -23,7 +23,7 @@
 
         h1 {
             margin-bottom: 10px;
-            color: #333;
+            color: #f1eaea;
             font-size: 36px; /* Increased font size */
         }
 
@@ -31,13 +31,22 @@
             max-width: 800px;
             margin: 0 auto;
             opacity: 0;
-            animation: fadeIn 1s forwards 0.5s;
+            color: #f1eaea;
+            animation: fadeIn 1s forwards 0.5s, boxShadowFade 1s forwards 0.5s;
             font-size: 18px; /* Increased font size */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 25px;
         }
 
         @keyframes fadeIn {
             to {
                 opacity: 1;
+            }
+        }
+
+        @keyframes boxShadowFade {
+            to {
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
             }
         }
 
@@ -66,7 +75,7 @@
             margin-bottom: 10px;
             opacity: 0;
             animation: fadeIn 1s forwards 0.5s;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1)
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         .contributor:hover {
