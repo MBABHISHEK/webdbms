@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+      margin: 0;
+      padding: 0;
+      background-image: url("Loginform.JPG");
+      background-size: cover;
+      font-family: Arial, sans-serif;
+    }
+
+    .sidebar {
+      height: 100%;
+      width: 250px;
+      position: fixed;
+      background-color: #343a40;
+      padding-top: 20px;
+      color: #fff;
+    }
+
+    .main-content {
+      margin-left: 250px;
+      padding: 20px;
+    }
+
+    .menu-item {
+      padding: 10px 20px;
+      color: #fff;
+      text-decoration: none;
+      display: block;
+      transition: background 0.3s;
+    }
+
+    .menu-item:hover {
+      background-color: #495057;
+    }
+
+    .quick-stats {
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #495057;
+      color: #fff;
+      border-radius: 5px;
+    }
+
+    .sidebar-buttons {
+      margin-top: 20px;
+    }
+
+    .btn-sidebar {
+      width: 100%;
+      margin-bottom: 10px;
+      transition: margin-left 0.3s; /* Add transition for margin-left property */
+    }
+
+    .btn-sidebar:hover {
+      margin-left: 10px; /* Adjust the value based on your preference */
+    }
+
+    .main1{
+        display: none;
+    }
+    .add-login-form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: auto;
+}
+
+.add-login-form {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    margin: auto;
+
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+
+    .delete-book-form-container {
+      display: none;
+    }
+
+    table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #333;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<div class="sidebar">
+
+    <div class="menu-item">LOGIN SERVICES</div>
+    <div class="sidebar-buttons">
+      <button class="btn btn-primary btn-sidebar" onclick="showInsertForm()">Login</button>
+      <button class="btn btn-primary btn-sidebar" onclick="showSearchForm()">SERACH</button>
+      <!-- Add more buttons as needed -->
+    </div>
+  </div>
+</div>
+
+<div class="main-content">
+    <div class="main1" id="main1">
+    <div class="add-login-form-container" id="add-login-form-container">
+      <form id="add-login-form" class="add-login-form">
+        <label for="login_id">
+          Login ID:
+          <input type="text" id="login_id" name="login_id" required>
+        </label>
+        <br>
+        <label for="first_name">
+            First_name:
+          <input type="text" id="first_name" name="first_name" required>
+        </label>
+        <br>
+        <label for="last_name">
+          Last Name:
+          <input type="text" id="last_name" name="last_name" required>
+        </label>
+        <br>
+        <label for="t_date">
+          Date :
+          <input type="text" id="t_date" name="t_date" required>
+        </label>
+        <br>
+        <label for="visit">
+         Purpose Of Visit:
+          <input type="text" id="visit" name="visit" required>
+        </label>
+        <br>
+        <label for="entry_time">
+            Entry Time:
+             <input type="text" id="entry_time" name="entry_time" required>
+           </label>
+           <br>
+           <label for="exit_time">
+               Exit Time:
+                <input type="text" id="exit_time" name="exit_time" required>
+              </label>
+              <br>
+              <label for="Department_name">
+                  Department Name:
+                   <input type="text" id="Department_name" name="Department_name" required>
+                 </label>
+        <button type="button" onclick="handleFormLogin()">Login</button>
+        <br>
+      </form>
+    </div>
+
+
+    <div id="searchResults" style="display: none;">
+        <h2>Search Results</h2>
+        <table id="resultTable">
+          <thead>
+            <tr>
+              <th>Book ID</th>
+              <th>Title</th>
+              <th>Author</th>
+              <th>Edition</th>
+              <th>Subject ID</th>
+            </tr>
+          </thead>
+          <tbody id="resultTableBody"></tbody>
+        </table>
+      </div>
+    </>
+    </div>
+<!-- Include Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.8/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+       function showInsertForm() {
+      document.getElementById('main1').style.display = 'block';
+      document.getElementById('searchResults').style.display = 'none';
+    }
+    function showSearchForm() {
+      document.getElementById('main1').style.display = 'none';
+      document.getElementById('searchResults').style.display = 'block';
+    }
+    function handleFormLogin() {
+        const loginData = {
+            login_id: document.getElementById('login_id').value,
+            first_name: document.getElementById('first_name').value,
+            last_name: document.getElementById('last_name').value,
+            t_date: document.getElementById('t_date').value,
+            visit: document.getElementById('visit').value,
+            entry_time: document.getElementById('entry_time').value,
+            exit_time: document.getElementById('exit_time').value,
+            Department_name: document.getElementById('Department_name').value,
+        };
+
+        console.log('Login data submitted:', loginData);
+            // Send a POST request to add to Login table
+    fetch('http://localhost:3000/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(loginData),
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Logged in Successfully:', data);
+      alert('Logged in successfully');
+      // You can perform additional actions here if needed
+    })
+    .catch(error => {
+      console.error('Error logging in:', error);
+      alert('Not Logged in successfully');
+    });
+    }
+
+
+</script>
+
+</body>
+</html>
