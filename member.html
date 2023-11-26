@@ -9,7 +9,7 @@
     body {
       margin: 0;
       padding: 0;
-      background-image: url("membership form.jpg");
+      background-image: url("MemberForm.jpeg");
       background-size: cover;
       font-family: Arial, sans-serif;
     }
@@ -65,7 +65,7 @@
     .main1{
         display: none;
     }
-    .add-book-form-container {
+    .add-member-form-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -73,7 +73,7 @@
     margin: auto;
 }
 
-.add-book-form {
+.add-member-form {
     background-color: rgba(255, 255, 255, 0.8);
     padding: 20px;
     border-radius: 8px;
@@ -133,7 +133,7 @@ button:hover {
 
     <div class="menu-item">MEMBERSHIP SERVICES</div>
     <div class="sidebar-buttons">
-      <button class="btn btn-primary btn-sidebar" onclick="showInsertForm()">ENROLL MEMBERSHIP</button>
+      <button class="btn btn-primary btn-sidebar" onclick="showEnrollForm()">ENROLL MEMBERSHIP</button>
       <button class="btn btn-secondary btn-sidebar" onclick="showDeleteForm()">DELETE MEMBERSHIP</button>
       <button class="btn btn-primary btn-sidebar" onclick="showSearchForm()">SERACH MEMBERSHIP</button>
       <!-- Add more buttons as needed -->
@@ -142,9 +142,9 @@ button:hover {
 </div>
   <div class="main-content">
     <div class="main1" id="main1">
-    <div class="add-book-form-container" id="add-book-form-container">
-      <form id="add-book-form" class="add-book-form">
-        <label for="bookId">
+    <div class="add-member-form-container" id="add-member-form-container">
+      <form id="add-member-form" class="add-book-form">
+        <label for="memberId">
           MEMBERSHIP ID:
           <input type="text" id="MemberId" name="Member_id" required>
         </label>

@@ -1,153 +1,280 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <style>
         body {
-            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            color: #333;
-            background-color: #f4f4f4;
+            background-image: url("MemberForm.jpeg");
+            background-size: cover;
+            font-family: Arial, sans-serif;
         }
 
-        .contact {
-            text-align: center;
-            padding: 20px;
-            background-color:#333;
-            opacity: 0;
-            animation: fadeIn 2s forwards;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        h1 {
-            margin-bottom: 10px;
-            color: #f1eaea;
-            font-size: 36px; /* Increased font size */
-        }
-
-        .contact-info {
-            max-width: 800px;
-            margin: 0 auto;
-            opacity: 0;
-            color: #f1eaea;
-            animation: fadeIn 1s forwards 0.5s, boxShadowFade 1s forwards 0.5s;
-            font-size: 18px; /* Increased font size */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 25px;
-            transition: transform 0.3s ease; /* Added transition for the transform property */
-        }
-
-        .contact-info:hover {
-            transform: scale(1.1);
-        }
-
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-            }
-        }
-
-        @keyframes boxShadowFade {
-            to {
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-            }
-        }
-
-        section {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            padding: 20px;
-            opacity: 0;
-            animation: fadeIn 1s forwards 1s;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .contributor {
-            text-align: center;
-            margin: 10px;
-            transition: transform 0.3s ease, color 0.3s ease;
-            font-size: 16px; /* Increased font size */
-        }
-
-        .contributor img {
+        .sidebar {
+            height: 100%;
             width: 250px;
-            height: 250px;
-            border-radius: 50%;
-            object-fit: cover;
+            position: fixed;
+            background-color: #343a40;
+            padding-top: 20px;
+            color: #fff;
+        }
+
+        .main-content {
+            margin-left: 250px;
+            padding: 20px;
+        }
+
+        .menu-item {
+            padding: 10px 20px;
+            color: #fff;
+            text-decoration: none;
+            display: block;
+            transition: background 0.3s;
+        }
+
+        .menu-item:hover {
+            background-color: #495057;
+        }
+
+        .quick-stats {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #495057;
+            color: #fff;
+            border-radius: 5px;
+        }
+
+        .sidebar-buttons {
+            margin-top: 20px;
+        }
+
+        .btn-sidebar {
+            width: 100%;
             margin-bottom: 10px;
-            opacity: 0;
-            animation: fadeIn 1s forwards 0.5s;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: margin-left 0.3s;
         }
 
-        .contributor:hover {
-            transform: scale(1.1);
-            color: #009688;
+        .btn-sidebar:hover {
+            margin-left: 10px;
         }
 
-        .contributor p {
-            margin: 0;
-            color: #444;
+        .main1 {
+            display: none;
+        }
+
+        .add-member-form-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: auto;
+        }
+
+        .add-member-form {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            margin: auto;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .delete-book-form-container {
+            display: none;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #333;
+            color: white;
         }
     </style>
-    <title>Contact us</title>
+    <title>Sidebar Dashboard with Buttons</title>
 </head>
+
 <body>
-    <div class="contact">
-        <h1>Contact us</h1>
-        <br>
-        <br>
-        <p class="contact-info">
-            Dear Library Patron,
-            Thank you for reaching out to us! We appreciate your interest in our Library Management System.
-            If you have any questions, concerns, or feedback, please don't hesitate to contact us.
-            Our dedicated team is here to assist you.
-            Feel free to reach us through the following channels:
-            <br>
-            Email: ideaspring@gmail.com
-            <br>
-            Phone: 0821-2345672 8457857983
-            <br>
-            Address:
-            466, Gokulam Main Road
-            Gokulam,
-            Mysore, Karnataka 570002
-            India
-            <br>
-            We strive to provide the best possible service, and your input is invaluable to us. Whether you have a suggestion for improvement or need assistance with a specific issue, we're here to help.
-
-            Thank you for being a valued member of our library community!
-
-            Best regards,
-            Ideaspring Team
-        </p>
+    <div class="sidebar">
+        <div class="menu-item">MEMBERSHIP SERVICES</div>
+        <div class="sidebar-buttons">
+            <button class="btn btn-primary btn-sidebar" onclick="showEnrollForm()">ENROLL MEMBERSHIP</button>
+            <button class="btn btn-secondary btn-sidebar" onclick="showDeleteForm()">DELETE MEMBERSHIP</button>
+            <button class="btn btn-primary btn-sidebar" onclick="showSearchForm()">SEARCH MEMBERSHIP</button>
+            <!-- Add more buttons as needed -->
+        </div>
     </div>
-    <section>
-        <div class="contributor">
-            <img src="contitbutor2.png" alt="Contributor 1">
-            <p>sinchana</p>
+
+    <div class="main-content">
+        <div class="main1" id="main1">
+            <div class="add-member-form-container" id="add-member-form-container">
+                <form id="add-member-form" class="add-member-form">
+                    <label for="memberId">
+                        MEMBERSHIP ID:
+                        <input type="text" id="MemberId" name="Member_id" required>
+                      </label>
+                      <br>
+                      <label for="firstname">
+                        firstname
+                        <input type="text" id="firstname" name="first_name" required>
+                      </label>
+                      <br>
+                      <label for="lastname">
+                        lastname
+                        <input type="text" id="lastname" name="last_name" required>
+                      </label>
+                      <br>
+                      <label for="email">
+                        email
+                        <input type="text" id="email" name="email" required>
+                      </label>
+                      <br>
+                      <label for="phoneno">
+                        phoneno
+                        <input type="text" id="phoneno" name="phone_no" required>
+                      </label>
+                      <label for="address">
+                          address
+                          <input type="text" id="address" name="address" required>
+                        </label>
+                      <label for="NextRenewal">
+                          NextRenewal
+                          <input type="text" id="NextRenewal" name="Next_renewal" required>
+                      </label>
+                      <label for="loginid">
+                          loginid
+                          <input type="text" id="loginid" name="login_id" required>
+                      </label>
+                      <label for="registeredby">
+                          registeredby
+                          <input type="text" id="registeredby" name="registered_by" required>
+                      </label>
+                      <button type="button" onclick="handleFormEnroll()">Enroll Membership</button>
+                      <br>
+                </form>
+            </div>
         </div>
 
-        <div class="contributor">
-            <img src="contributor2.png" alt="Contributor 2">
-            <p>Anagha</p>
+        <div class="delete-book-form-container" id="delete-membership-form-container">
+            <form id="delete-book-form" class="delete-book-form">
+                <label for="deleteMembershipId">
+                    MEMBERSHIP ID to Delete:
+                    <input type="text" id="deleteMembershipId" name="deleteMembershipId" required>
+                </label>
+                <br>
+                <button type="button" onclick="handleDeleteMember()">Delete Membership</button>
+            </form>
         </div>
 
-        <div class="contributor">
-            <img src="contributor3.png" alt="Contributor 3">
-            <p>Kirtana Kiran</p>
+        <div id="searchResults" style="display: none;">
+            <h2>Search Results</h2>
+            <table id="resultTable">
+              <thead>
+                <tr>
+                  <th>Membership ID</th>
+                  <th>first name</th>
+                  <th>last name</th>
+                  <th>email</th>
+                  <th>phone no</th>
+                  <th>address</th>
+                  <th>Next renewal</th>
+                  <th>loginid</th>
+                  <th>registeredby</th>
+                </tr>
+              </thead>
+              <tbody id="resultTableBody"></tbody>
+            </table>
+          </div>
         </div>
+    </div>
 
-        <div class="contributor">
-            <img src="contibutor1.png" alt="Contributor 4">
-            <p>ABHISHEK M B</p>
-        </div>
+    <script>
+        function showEnrollForm() {
+            document.getElementById('main1').style.display = 'block';
+            document.getElementById('delete-membership-form-container').style.display = 'none';
+            document.getElementById('searchResults').style.display = 'none';
+        }
 
-        <!-- Add more contributor divs as needed -->
+        function showDeleteForm() {
+            document.getElementById('main1').style.display = 'none';
+            document.getElementById('delete-membership-form-container').style.display = 'block';
+            document.getElementById('searchResults').style.display = 'none';
+        }
 
-    </section>
+        function showSearchForm() {
+            document.getElementById('main1').style.display = 'none';
+            document.getElementById('delete-membership-form-container').style.display = 'none';
+            document.getElementById('searchResults').style.display = 'block';
+        }
+
+        function handleDeleteMember() {
+            const deleteMembershipId = document.getElementById('deleteMembershipId').value;
+            console.log('Deleting Membership with ID:', deleteMembershipId);
+            // You can perform further actions, such as making an API call or updating the UI
+        }
+
+        function handleFormEnroll() {
+            const membershipData = {
+                Member_id: document.getElementById('MemberId').value,
+                first_name: document.getElementById('firstname').value,
+                // Add other fields similarly
+            };
+
+            // Send a POST request to enroll a membership
+            fetch('http://localhost:3000/enroll-membership', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(membershipData),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Membership enrolled successfully:', data);
+                    alert('Membership enrolled successfully');
+                    // You can perform additional actions here if needed
+                })
+                .catch(error => {
+                    console.error('Error enrolling membership:', error);
+                    alert('Membership not enrolled successfully');
+                });
+        }
+    </script>
+
 </body>
+
 </html>
