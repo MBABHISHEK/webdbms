@@ -1,121 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Form</title>
-    <!-- Include Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <style>
         body {
-      margin: 0;
-      padding: 0;
-      background-image: url("Loginform.JPG");
-      background-size: cover;
-      font-family: Arial, sans-serif;
-    }
+            margin: 0;
+            padding: 0;
+            background-image: url("MemberForm.jpeg");
+            background-size: cover;
+            font-family: Arial, sans-serif;
+        }
 
-    .sidebar {
-      height: 100%;
-      width: 250px;
-      position: fixed;
-      background-color: #343a40;
-      padding-top: 20px;
-      color: #fff;
-    }
+        .sidebar {
+            height: 100%;
+            width: 250px;
+            position: fixed;
+            background-color: #343a40;
+            padding-top: 20px;
+            color: #fff;
+        }
 
-    .main-content {
-      margin-left: 250px;
-      padding: 20px;
-    }
+        .main-content {
+            margin-left: 250px;
+            padding: 20px;
+        }
 
-    .menu-item {
-      padding: 10px 20px;
-      color: #fff;
-      text-decoration: none;
-      display: block;
-      transition: background 0.3s;
-    }
+        .menu-item {
+            padding: 10px 20px;
+            color: #fff;
+            text-decoration: none;
+            display: block;
+            transition: background 0.3s;
+        }
 
-    .menu-item:hover {
-      background-color: #495057;
-    }
+        .menu-item:hover {
+            background-color: #495057;
+        }
 
-    .quick-stats {
-      margin-top: 20px;
-      padding: 10px;
-      background-color: #495057;
-      color: #fff;
-      border-radius: 5px;
-    }
+        .quick-stats {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #495057;
+            color: #fff;
+            border-radius: 5px;
+        }
 
-    .sidebar-buttons {
-      margin-top: 20px;
-    }
+        .sidebar-buttons {
+            margin-top: 20px;
+        }
 
-    .btn-sidebar {
-      width: 100%;
-      margin-bottom: 10px;
-      transition: margin-left 0.3s; /* Add transition for margin-left property */
-    }
+        .btn-sidebar {
+            width: 100%;
+            margin-bottom: 10px;
+            transition: margin-left 0.3s;
+        }
 
-    .btn-sidebar:hover {
-      margin-left: 10px; /* Adjust the value based on your preference */
-    }
+        .btn-sidebar:hover {
+            margin-left: 10px;
+        }
 
-    .main1{
-        display: none;
-    }
-    .add-login-form-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: auto;
-}
+        .main1 {
+            display: none;
+        }
 
-.add-login-form {
-    background-color: rgba(255, 255, 255, 0.8);
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    margin: auto;
+        .add-member-form-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: auto;
+        }
 
-}
+        .add-member-form {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            margin: auto;
+        }
 
-input {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    box-sizing: border-box;
-}
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
 
-button {
-    background-color: #007bff;
-    color: #fff;
-    padding: 10px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-}
+        button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
 
-button:hover {
-    background-color: #0056b3;
-}
+        button:hover {
+            background-color: #0056b3;
+        }
 
+        .delete-member-form-container {
+            display: none;
+        }
 
-    .delete-book-form-container {
-      display: none;
-    }
-
-    table {
+        table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
         }
 
-        th, td {
+        th,
+        td {
             border: 1px solid #ddd;
             padding: 8px;
             text-align: left;
@@ -125,135 +124,289 @@ button:hover {
             background-color: #333;
             color: white;
         }
+
+        .form-row {
+            margin-bottom: 10px;
+        }
     </style>
+    <title>Sidebar Dashboard with Buttons</title>
 </head>
+
 <body>
-<div class="sidebar">
-
-    <div class="menu-item">LOGIN SERVICES</div>
-    <div class="sidebar-buttons">
-      <button class="btn btn-primary btn-sidebar" onclick="showInsertForm()">Login</button>
-      <button class="btn btn-primary btn-sidebar" onclick="showSearchForm()">SERACH</button>
-      <!-- Add more buttons as needed -->
-    </div>
-  </div>
-</div>
-
-<div class="main-content">
-    <div class="main1" id="main1">
-    <div class="add-login-form-container" id="add-login-form-container">
-      <form id="add-login-form" class="add-login-form">
-        <label for="login_id">
-          Login ID:
-          <input type="text" id="login_id" name="login_id" required>
-        </label>
-        <br>
-        <label for="first_name">
-            First_name:
-          <input type="text" id="first_name" name="first_name" required>
-        </label>
-        <br>
-        <label for="last_name">
-          Last Name:
-          <input type="text" id="last_name" name="last_name" required>
-        </label>
-        <br>
-        <label for="t_date">
-          Date :
-          <input type="text" id="t_date" name="t_date" required>
-        </label>
-        <br>
-        <label for="visit">
-         Purpose Of Visit:
-          <input type="text" id="visit" name="visit" required>
-        </label>
-        <br>
-        <label for="entry_time">
-            Entry Time:
-             <input type="text" id="entry_time" name="entry_time" required>
-           </label>
-           <br>
-           <label for="exit_time">
-               Exit Time:
-                <input type="text" id="exit_time" name="exit_time" required>
-              </label>
-              <br>
-              <label for="Department_name">
-                  Department Name:
-                   <input type="text" id="Department_name" name="Department_name" required>
-                 </label>
-        <button type="button" onclick="handleFormLogin()">Login</button>
-        <br>
-      </form>
+    <div class="sidebar">
+        <div class="menu-item">MEMBERSHIP SERVICES</div>
+        <div class="sidebar-buttons">
+            <button class="btn btn-primary btn-sidebar" onclick="showEnrollForm()">ENROLL MEMBERSHIP</button>
+            <button class="btn btn-secondary btn-sidebar" onclick="showDeleteForm()">DELETE MEMBERSHIP</button>
+            <button class="btn btn-primary btn-sidebar" onclick="showSearchForm()">SEARCH MEMBERSHIP</button>
+            <button class="btn btn-primary btn-sidebar" onclick="displayResults()">DISPLAY MEMBERSHIP</button>
+            <!-- Add more buttons as needed -->
+        </div>
     </div>
 
+    <div class="main-content">
+        <div class="main1" id="main1">
+            <div class="add-member-form-container" id="add-member-form-container">
+                <form id="add-member-form" class="add-member-form">
+                    <div class="form-row">
+                        <div class="col">
+                            <label for="MemberId">MEMBERSHIP ID: </label>
+                            <input type="text" id="MemberId" name="Member_id" required>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-row">
+                        <div class="col">
+                            <label for="firstname">First Name</label>
+                            <input type="text" id="firstname" name="first_name" required>
+                        </div>
+                        <div class="col">
+                            <label for="lastname">Last Name</label>
+                            <input type="text" id="lastname" name="last_name" required>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-row">
+                        <div class="col">
+                            <label for="email">Email </label>
+                            <input type="text" id="email" name="email" required>
+                        </div>
+                        <div class="col">
+                            <label for="phoneno">Phone Number</label>
+                            <input type="text" id="phoneno" name="phone_no" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col">
+                            <label for="address">Address </label>
+                            <input type="text" id="address" name="address" required>
+                        </div>
+                        <div class="col">
+                            <label for="NextRenewal">Next Renewal</label>
+                            <input type="text" id="NextRenewal" name="Next_renewal" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col">
+                            <label for="loginid">Login ID</label>
+                            <input type="text" id="loginid" name="login_id" required>
+                        </div>
+                        <div class="col">
+                            <label for="registeredby">Registered By</label>
+                            <input type="text" id="registeredby" name="registered_by" required>
+                        </div>
+                    </div>
+                    <button type="button" onclick="handleFormEnroll()">Enroll Membership</button>
+                    <br>
+                </form>
+            </div>
+        </div>
 
-    <div id="searchResults" style="display: none;">
-        <h2>Search Results</h2>
-        <table id="resultTable">
-          <thead>
-            <tr>
-              <th>Book ID</th>
-              <th>Title</th>
-              <th>Author</th>
-              <th>Edition</th>
-              <th>Subject ID</th>
-            </tr>
-          </thead>
-          <tbody id="resultTableBody"></tbody>
-        </table>
-      </div>
-    </>
+        <div class="delete-member-form-container" id="delete-membership-form-container">
+            <form id="delete-member-form" class="delete-member-form">
+                <label for="deleteMembershipId">
+                    MEMBERSHIP ID to Delete:
+                    <input type="text" id="deleteMembershipId" name="deleteMembershipId" required>
+                </label>
+                <br>
+                <button type="button" onclick="handleDeleteMember()">Delete Membership</button>
+            </form>
+        </div>
+        <div id="showMembers" style="display: none;">
+            <h2>Member List</h2>
+            <table id="memberTable">
+                <thead>
+                    <tr>
+                        <th>Member ID</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email</th>
+                        <th>Phone Number</th>
+                        <th>Address</th>
+                        <th>Next Renewal</th>
+                        <th>Login ID</th>
+                        <th>Registered By</th>
+                    </tr>
+                </thead>
+                <tbody id="memberTableBody"></tbody>
+            </table>
+        </div>
+
+        <div id="searchResults" style="display: none;">
+          <label for="MemberId">MEMBERSHIP ID: TO SEARCH</label>
+          <input type="text" id="MemberId" name="Member_id" required>
+            <h2>Search Results</h2>
+            <table id="resultTable">
+                <thead>
+                    <tr>
+                        <th>Membership ID</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email</th>
+                        <th>Phone No</th>
+                        <th>Address</th>
+                        <th>Next Renewal</th>
+                        <th>Login ID</th>
+                        <th>Registered By</th>
+                    </tr>
+                </thead>
+                <tbody id="resultTableBody"></tbody>
+            </table>
+        </div>
     </div>
-<!-- Include Bootstrap JS and dependencies -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.8/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-<script>
-       function showInsertForm() {
-      document.getElementById('main1').style.display = 'block';
-      document.getElementById('searchResults').style.display = 'none';
+    <script>
+        function showEnrollForm() {
+            document.getElementById('main1').style.display = 'block';
+            document.getElementById('delete-membership-form-container').style.display = 'none';
+            document.getElementById('searchResults').style.display = 'none';
+            document.getElementById('showMembers').style.display = 'none';
+
+        }
+
+        function showDeleteForm() {
+            document.getElementById('main1').style.display = 'none';
+            document.getElementById('delete-membership-form-container').style.display = 'block';
+            document.getElementById('searchResults').style.display = 'none';
+            document.getElementById('showMembers').style.display = 'none';
+
+        }
+
+        function showSearchForm() {
+            document.getElementById('main1').style.display = 'none';
+            document.getElementById('delete-membership-form-container').style.display = 'none';
+            document.getElementById('searchResults').style.display = 'block';
+            document.getElementById('showMembers').style.display = 'none';
+
+        }
+        function displayResults()
+        {
+            document.getElementById('main1').style.display = 'none';
+            document.getElementById('delete-membership-form-container').style.display = 'none';
+            document.getElementById('searchResults').style.display = 'none';
+            document.getElementById('showMembers').style.display = 'block';
+            showMembers();
+
+        }
+        function handleDeleteMember() {
+            const deleteMembershipId = document.getElementById('deleteMembershipId').value;
+            console.log('Deleting Membership with ID:', deleteMembershipId);
+            fetch(`http://localhost:3000/delete-member/${deleteMembershipId}`, {
+                    method: 'DELETE',
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Membership deleted successfully:', data);
+                    alert('Membership deleted successfully');
+                })
+                .catch(error => {
+                    console.error('Error deleting membership:', error);
+                });
+        }
+
+        function handleFormEnroll() {
+            const membershipData = {
+                Member_id: document.getElementById('MemberId').value,
+                first_name: document.getElementById('firstname').value,
+                last_name: document.getElementById('lastname').value,
+                email: document.getElementById('email').value,
+                phone_no: document.getElementById('phoneno').value,
+                address: document.getElementById('address').value,
+                Next_renewal: document.getElementById('NextRenewal').value,
+                loginid: document.getElementById('loginid').value,
+                registeredby: document.getElementById('registeredby').value,
+            };
+
+            fetch('http://localhost:3000/enroll-membership', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(membershipData),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Membership enrolled successfully:', data);
+                    alert('Membership enrolled successfully');
+                })
+                .catch(error => {
+                    console.error('Error enrolling membership:', error);
+                    alert('Membership not enrolled successfully');
+                });
+        }
+
+        function showMembers() {
+            fetch('http://localhost:3000/get-all-members')
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    if (data.error) {
+                        console.error('Error retrieving members:', data.error);
+                    } else {
+                        console.log('Members found:', data);
+                        displayMembers(data);
+                        // You can display the search results or perform additional actions here
+                    }
+                })
+                .catch(error => {
+                    console.error('Error retrieving members:', error);
+                });
+        }
+        function displayMembers(members) {
+            const memberTableBody = document.getElementById('memberTableBody');
+            memberTableBody.innerHTML = ''; // Clear previous data
+
+            members.forEach(member => {
+                const row = memberTableBody.insertRow();
+                row.insertCell(0).textContent = member.Member_id;
+                row.insertCell(1).textContent = member.first_name;
+                row.insertCell(2).textContent = member.last_name;
+                row.insertCell(3).textContent = member.email;
+                row.insertCell(4).textContent = member.phone_no;
+                row.insertCell(5).textContent = member.address;
+                row.insertCell(6).textContent = member.Next_renewal;
+                row.insertCell(7).textContent = member.loginid;
+                row.insertCell(8).textContent = member.registeredby;
+            });
+        }
+
+        // Call the function to show members on page load
+        function handleSearchMemberById() {
+        const memberId = document.getElementById('searchMemberId').value;
+        console.log(memberId);
+        fetch(`http://localhost:3000/search-member/${memberId}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    console.error('Error searching for members:', data.error);
+                } else {
+                    console.log('Member found:', data);
+                    displayMembersSearchResults(data);
+                    // You can display the search results or perform additional actions here
+                }
+            })
+            .catch(error => {
+                console.error('Error searching for members:', error);
+            });
     }
-    function showSearchForm() {
-      document.getElementById('main1').style.display = 'none';
-      document.getElementById('searchResults').style.display = 'block';
-    }
-    function handleFormLogin() {
-        const loginData = {
-            login_id: document.getElementById('login_id').value,
-            first_name: document.getElementById('first_name').value,
-            last_name: document.getElementById('last_name').value,
-            t_date: document.getElementById('t_date').value,
-            visit: document.getElementById('visit').value,
-            entry_time: document.getElementById('entry_time').value,
-            exit_time: document.getElementById('exit_time').value,
-            Department_name: document.getElementById('Department_name').value,
-        };
 
-        console.log('Login data submitted:', loginData);
-            // Send a POST request to add to Login table
-    fetch('http://localhost:3000/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(loginData),
-    })
-    .then(response => response.json())
-    .then(data => {
-      console.log('Logged in Successfully:', data);
-      alert('Logged in successfully');
-      // You can perform additional actions here if needed
-    })
-    .catch(error => {
-      console.error('Error logging in:', error);
-      alert('Not Logged in successfully');
-    });
-    }
+    function displayMembersSearchResults(members)
+    {const memberTableBody = document.getElementById('resultTableBody');
+            memberTableBody.innerHTML = ''; // Clear previous data
 
-
-</script>
-
-</body>
-</html>
+            members.forEach(member => {
+                const row = memberTableBody.insertRow();
+                row.insertCell(0).textContent = member.Member_id;
+                row.insertCell(1).textContent = member.first_name;
+                row.insertCell(2).textContent = member.last_name;
+                row.insertCell(3).textContent = member.email;
+                row.insertCell(4).textContent = member.phone_no;
+                row.insertCell(5).textContent = member.address;
+                row.insertCell(6).textContent = member.Next_renewal;
+                row.insertCell(7).textContent = member.loginid;
+                row.insertCell(8).textContent = member.registeredby;
+            });
+        }
+      </script>
+</body
+resultTable
