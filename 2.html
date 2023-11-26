@@ -33,10 +33,8 @@
             transition: transform 0.3s ease;
             margin: 10px;
             width: 250px;
-            height: 300px;
+            height: 300px; /* 33.33% width with 20px margin on both sides */
             box-sizing: border-box;
-            justify-content: center; /* Center content vertically */
-            align-items: center; /* Center content horizontally */
         }
 
         .dashboard:hover {
@@ -57,7 +55,7 @@
 
         .dashboard-button {
             text-align: center;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease; /* Added margin-left transition */
             position: relative;
             z-index: 3;
         }
@@ -92,8 +90,6 @@
 </head>
 
 <body>
-
-    <h1>SERVICES</h1>
     <div class="dashboard-container">
         <div class="dashboard">
             <div class="sidebar">
@@ -142,18 +138,18 @@
                 </div>
             </div>
         </div>
-
-        <div class="dashboard">
-            <div class="sidebar">
-                <div class="sidebar-buttons">
-                    <div class="dashboard-button">
-                        <div class="button-container">
-                            <a href="Ebook.html" class="btn btn-primary">Ebook</a>
-                        </div>
+    <div class="dashboard">
+        <div class="sidebar">
+            <div class="sidebar-buttons">
+                <div class="dashboard-button">
+                    <div class="button-container">
+                        <a href="Ebook.html" class="btn btn-primary">Ebook</a>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+</div>
     </div>
     <div class="main-content">
         <!-- Content for AddBookForm, AddMemberForm, etc. goes here -->
