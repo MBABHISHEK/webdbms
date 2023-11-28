@@ -4,6 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- ... (your existing meta tags and title) ... -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+        <!-- ... (your existing styles) ... -->
+    
     <title>Dashboard</title>
     <style>
         body {
@@ -31,10 +35,10 @@
         .dashboard {
             display: flex;
             flex-direction: column;
-            background-color: #343a40;
+            background-color: #0577ea;
             color: #fff;
             padding: 20px;
-            border-radius: 20px;
+            border-radius: 25px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease;
             margin: 10px;
@@ -52,15 +56,17 @@
         .sidebar {
             width: 100%;
         }
-
+          
         .sidebar-buttons {
             display: flex;
             flex-direction: column;
             gap: 10px;
             position: relative;
             z-index: 2;
+            justify-content: center;
+            align-items: center;
+    
         }
-
         .dashboard-button {
             text-align: center;
             transition: transform 0.3s ease;
@@ -73,7 +79,7 @@
         }
 
         .button-container {
-            background-color: #343a40;
+            background-color: #156a72;
             border-radius: 10px;
         }
 
@@ -113,6 +119,7 @@
         <div class="dashboard">
             <div class="sidebar">
                 <div class="sidebar-buttons">
+                    <i class="fas fa-book fa-3x"></i> 
                     <div class="dashboard-button">
                         <div class="button-container">
                             <a href="addBookFrom.html" class="btn btn-primary">BOOKS</a>
