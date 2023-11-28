@@ -250,10 +250,67 @@ app.get('/get-all-members', function (req, res) {
 
 
 
+app.post('/add-staff', (req, res) => {
+    const staffData = req.body;
+     console.log(staffData);
+    // Check if subject_id exists in the Department table
+    connection.query(  // Change 'db' to 'connection' here
+    'INSERT INTO staff(staff_id, first_name, last_name, gender, designation,phone_no,address,joining_year) VALUES (?, ?, ?, ?, ?,?,?,?)',
+    [staffData.staff_id, staffData.first_name, staffData.last_name, staffData.gender, staffData.designation,staffData.phone_no,staffData.address,staffData.joining_year],
+    (insertErr) => {
+      if (insertErr) {
+        console.error('Error adding staff:', insertErr);
+        return res.status(500).json({ error: 'Internal Server Error' });
+      }
+      res.json({ message: 'staff added successfully' });
+    }
+  );
+}); 
+
+app.delete('/delete-staff/:staff_id', (req, res) => {
+  const staff_id = req.params.staff_id;
+  console.log(staff_id);
+  connection.query('DELETE FROM staff WHERE staff_id = ?', [staff_id], (err) => {
+    if (err) {
+      console.error('Error deleting staff:', err);
+      res.status(500).json({ error: 'Internal Server Error' });
+    } else {
+      res.json({ message: 'staff deleted successfully' });
+    }
+  });
+});
+
+app.put('/update-staff/:staff_id',(req,res)=>{
+  const staff_id = req.params.staff_id;
+  const phone_no = req.body.phone_no;
+  console.log(staff_id);
+  console.log(phone_no);
+  connection.query('UPDATE staff SET phone_no = ? WHERE staff_id = ?', [phone_no,staff_id], (err,result) => {
+    if (err) {
+      console.error('Error updating staff:', err);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+    else if (result.affectedRows === 0) {
+      return res.status(404).json({ error: 'staff not found' });
+    } 
+    else {
+      res.json({ message: 'staff updated successfully' });
+    }
+    });
+});
 
 
-
-
+app.get('/get-all-books', function (req, res) {
+  connection.query('SELECT * FROM books', function (err, results) {
+    if (err) {
+      console.log(err);
+      res.json({ error: 'Error retrieving books' });
+    } else {
+      console.log(results);
+      res.json(results);
+    }
+  });
+});
 
 
 
