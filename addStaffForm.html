@@ -169,7 +169,7 @@
 
 <!-- Include Bootstrap JS and dependencies -->
 <script>
-    function showInsertForm() {
+   function showInsertForm() {
         hideAllForms();
         document.querySelector('.add-staff-form-container').style.display = 'flex';
     }
@@ -204,18 +204,87 @@
 
         console.log('Staff added successfully:', staffData);
         // You can perform additional actions here if needed
+        fetch('http://localhost:3000/add-staff', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(staffData),
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('staff added successfully:', data);
+      alert('staff added successfully');
+      // You can perform additional actions here if needed
+    })
+    .catch(error => {
+      console.error('Error adding book:', error);
+      alert('staff not added successfully category is wrong');
+    });
+        // You can perform additional actions here if needed
     }
     function handleUpdateSubmit() {
-        const updateStaffId = document.getElementById('updateStaffId').value;
-        // ... (get other update fields)
+        const staff_id = document.getElementById('updateStaffId').value
+        const updateData = {
+            phone_no: document.getElementById('phone_no').value,
+        };
+        fetch(`http://localhost:3000/update-staff/${staff_id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(updateData),
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('staff  updated successfully:', data);
+      // You can perform additional actions here if needed
+    })
+    .catch(error => {
+      console.error('Error updating staff:', error);
+    });        // ... (get other update fields)
 
         console.log('Updating staff with ID:', updateStaffId);
         // You can perform additional actions here if needed
     }
 
     function handleDeleteSubmit() {
-        const deleteStaffId = document.getElementById('deleteStaffId').value
-    }
+        const staff_id = document.getElementById('deleteStaffId').value
+        fetch(`http://localhost:3000/delete-staff/${staff_id}`, {
+      method: 'DELETE',
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('staff deleted successfully:', data);
+      alert("Staff deleted successfully")
+      // You can perform additional actions here if needed
+    })
+    .catch(error => {
+      console.error('Error deleting staff:', error);
+    });    }
+</script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.8/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
 </script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.8/dist/umd/popper.min.js"></script>
