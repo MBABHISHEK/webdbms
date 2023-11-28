@@ -8,7 +8,8 @@ const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: 'abhishek@2003@sql',
-    database: 'libraryweb'// Change this database name to your required database
+    database: 'libraryweb',// Change this database name to your required database
+    multipleStatements:true
 });
 
 connection.connect((err) => {
@@ -189,6 +190,7 @@ app.delete('/delete-book/:book_id', (req, res) => {
 /*search in member by the member id */ 
 app.get('/search-member/:memberId', (req, res) => {
   const memberId = req.params.memberId;
+  console.log(memberId);
   connection.query(
     'SELECT * FROM Members WHERE Member_id = ?',
     [memberId],
@@ -343,24 +345,36 @@ connection.query('UPDATE staff SET phone_no = ? WHERE staff_id = ?', [phone_no,s
 
 app.post('/enroll-membership', (req, res) => {
   const memberdata = req.body;
-
+  console.log(memberdata);
   connection.query(
-      'SELECT COUNT(*) AS count FROM staff WHERE staff_id = ? UNION SELECT COUNT(*) AS count FROM login WHERE login_id = ?',
-      [memberdata.registeredby, memberdata.loginid],
-      (err, results) => {
-          if (err) {
-              console.error('Error checking:', err);
-              return res.status(500).json({ error: 'Internal Server Error' });
-          }
+    'SELECT COUNT(*) AS staff_count FROM staff WHERE staff_id = ?; SELECT COUNT(*) AS login_count FROM login WHERE login_id = ?',
+    [memberdata.registeredby, memberdata.loginid],
+    (err, results) => {
+        if (err) {
+            console.error('Error checking:', err);
+            return res.status(500).json({ error: 'Internal Server Error' });
+        }
 
-          // Assuming the first result corresponds to staff and the second to login
-          const chek1 = results[0].count || 0;
-          const chek2 = results[1].count || 0;
+        // Assuming the first result corresponds to staff and the second to login
+        const chek1 = results[0][0].staff_count || 0;
+        const chek2 = results[1][0].login_count || 0;
 
+        console.log('Staff count:', chek1);
+        console.log('Login count:', chek2);
+        console.log(memberdata.Next_renewal)
+        console.log(chek1, chek2);
           if (chek1 > 0 && chek2 > 0) {
               connection.query(
                   'INSERT INTO Members (Member_id, first_name, last_name, email, phone_no, address, next_renewal, login_id, registeredby) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)',
-                  [/* provide the values for each field */],
+                  [memberdata.Member_id,
+                    memberdata.first_name,
+                    memberdata.last_name,
+                    memberdata.email,
+                    memberdata.phone_no,
+                    memberdata.address,
+                    memberdata.Next_renewal,
+                    memberdata.loginid,
+                    memberdata.registeredby],
                   (err, result) => {
                       if (err) {
                           console.error('Error inserting into Members:', err);
@@ -376,7 +390,9 @@ app.post('/enroll-membership', (req, res) => {
           }
       }
   );
-});
+    }
+);
+
   app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
   });

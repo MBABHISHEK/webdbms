@@ -218,22 +218,6 @@
     });
     }
 
-    /*function handleDeleteSubmit() {
-        const ebook_id = document.getElementById('deleteeBookId').value
-        fetch(`http://localhost:3000/delete-ebook/${ebook_id}`, {
-      method: 'DELETE',
-    })
-    .then(response => response.json())
-    .then(data => {
-      console.log('eBook deleted successfully:', data);
-      alert(data);
-      // You can perform additional actions here if needed
-    })
-    .catch(error => {
-      console.error('Error deleting ebook:', error);
-      alert('eBook cannot be successfully deleted');
-    });
-    }*/
     function handleDeleteSubmit() {
     const ebook_id = document.getElementById('deleteeBookId').value;
     fetch(`http://localhost:3000/delete-ebook/${ebook_id}`, {
@@ -256,28 +240,36 @@
     });
 }
 
-    function handleUpdateSubmit() {
-        const ebook_id = document.getElementById('updateeBookId').value
-        const updateData = {
-            ratings_value: document.getElementById('updateRatingsValue').value,
-        };
-        fetch(`http://localhost:3000/update-ebook/${ebook_id}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(updateData),
+function handleUpdateSubmit() {
+    const ebook_id = document.getElementById('updateeBookId').value;
+    const updateData = {
+        ratings_value: document.getElementById('updateRatingsValue').value,
+    };
+
+    fetch(`http://localhost:3000/update-ebook/${ebook_id}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(updateData),
     })
-    .then(response => response.json())
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
     .then(data => {
-      console.log('eBook updated successfully:', data);
-      alert('Book updated successfully:');
-      // You can perform additional actions here if needed
+        console.log('eBook updated successfully:', data);
+        alert('Book updated successfully');
+        // You can perform additional actions here if needed
     })
     .catch(error => {
-      console.error('Error updating ebook:', error);
+        console.error('Error updating ebook:', error);
+        alert('Error updating eBook. Please try again.');
     });
-    }
+}
+
 </script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.8/dist/umd/popper.min.js"></script>

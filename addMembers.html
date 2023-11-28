@@ -173,7 +173,7 @@
                         </div>
                         <div class="col">
                             <label for="phoneno">Phone Number</label>
-                            <input type="text" id="phoneno" name="phone_no" required>
+                            <input type="number" id="phoneno" name="phone_no" required>
                         </div>
                     </div>
                     <div class="form-row">
@@ -189,7 +189,7 @@
                     <div class="form-row">
                         <div class="col">
                             <label for="loginid">Login ID</label>
-                            <input type="text" id="loginid" name="login_id" required>
+                            <input type="number" id="loginid" name="login_id" required>
                         </div>
                         <div class="col">
                             <label for="registeredby">Registered By</label>
@@ -235,6 +235,7 @@
         <div id="searchResults" style="display: none;">
           <label for="MemberId">MEMBERSHIP ID: TO SEARCH</label>
           <input type="text" id="MemberId" name="Member_id" required>
+          <button type="button" onclick="handleSearchMemberById()">Search</button>
             <h2>Search Results</h2>
             <table id="resultTable">
                 <thead>
@@ -358,22 +359,24 @@
 
             members.forEach(member => {
                 const row = memberTableBody.insertRow();
+                console.log(member.loginid);
                 row.insertCell(0).textContent = member.Member_id;
                 row.insertCell(1).textContent = member.first_name;
                 row.insertCell(2).textContent = member.last_name;
                 row.insertCell(3).textContent = member.email;
                 row.insertCell(4).textContent = member.phone_no;
                 row.insertCell(5).textContent = member.address;
-                row.insertCell(6).textContent = member.Next_renewal;
-                row.insertCell(7).textContent = member.loginid;
+                row.insertCell(6).textContent = member.next_renewal;
+                row.insertCell(7).textContent = member.login_id;
                 row.insertCell(8).textContent = member.registeredby;
             });
         }
 
         // Call the function to show members on page load
         function handleSearchMemberById() {
-        const memberId = document.getElementById('searchMemberId').value;
-        console.log(memberId);
+        const memberId = document.getElementById('MemberId').value;
+        console.log(typeof(memberId));
+        console.log('hai')
         fetch(`http://localhost:3000/search-member/${memberId}`)
             .then(response => response.json())
             .then(data => {
