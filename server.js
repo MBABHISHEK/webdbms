@@ -106,69 +106,6 @@ app.post('/add-book', (req, res) => {
       }
     );
   });
-
-/*add the members*/
-  app.post('/enroll-membership', (req, res) => {
-    const memberdata = req.body;
-    let chek1, chek2;
-  
-    connection.query(
-      'SELECT COUNT(*) AS count FROM staff WHERE staff_id = ?',
-      [memberdata.registeredby],
-      (err, result) => {
-        if (err) {
-          console.error('Error checking staff_id:', err);
-          return res.status(500).json({ error: 'Internal Server Error' });
-        }
-        chek1 = parseInt(result[0].count);
-  
-        // Check the second condition after the first query
-        checkConditionsAndInsert();
-      }
-    );
-  
-    connection.query(
-      'SELECT COUNT(*) AS count FROM login WHERE login_id = ?',
-      [memberdata.loginid],
-      (err, result) => {
-        if (err) {
-          console.error('Error checking login_id:', err);
-          return res.status(500).json({ error: 'Internal Server Error' });
-        }
-        chek2 = parseInt(result[0].count);
-  
-        // Check the second condition after the second query
-        checkConditionsAndInsert();
-      }
-    );
-  
-    // Function to check conditions and insert into Members table
-    function checkConditionsAndInsert() {
-      // Check if both conditions are met
-      if (chek1 > 0 && chek2 > 0) {
-        // Both conditions are met, you can proceed with the insertion
-        connection.query(
-          'INSERT INTO Members (Member_id, first_name, last_name, email, phone_no, address, next_renewal, login_id, registeredby) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)',
-          [/* provide the values for each field */],
-          (err, result) => {
-            if (err) {
-              console.error('Error inserting into Members:', err);
-              return res.status(500).json({ error: 'Internal Server Error' });
-            }
-            console.log('Inserted into Members:', result);
-  
-            // You can respond to the client or perform other actions here
-            res.status(200).json({ success: 'Enrollment successful' });
-          }
-        );
-      } else {
-        // Either condition is not met, you can respond accordingly
-        res.status(400).json({ error: 'Invalid enrollment conditions' });
-      }
-    }
-  });
-// 
-
 /*delete-ebook by ebookid*/
 app.delete('/delete-ebook/:ebook_id', (req, res) => {
   const ebook_id = req.params.ebook_id;
@@ -210,7 +147,39 @@ app.delete('/delete-book/:book_id', (req, res) => {
       }
     });
   });
+  app.put('/update-ebook/:ebook_id',(req,res)=>{
+    const ebook_id = req.params.ebook_id;
+    const ratings_value = req.body.ratings_value;
+    console.log(ebook_id);
+    console.log(ratings_value);
+    connection.query('UPDATE ebooks SET ratings_value = ? WHERE ebook_id = ?', [ratings_value,ebook_id], (err,result) => {
+      if (err) {
+        console.error('Error updating ebook:', err);
+        res.status(500).json({ error: 'Internal Server Error' });
+      }
+      else if (result.affectedRows === 0) {
+        return res.status(404).json({ error: 'Ebook not found' });
+      } 
+      else {
+        res.json({ message: 'eBook updated successfully' });
+      }
+      });
+  });
+
+  app.get('/get-all-books', function (req, res) {
+    connection.query('SELECT * FROM books', function (err, results) {
+      if (err) {
+        console.log(err);
+        res.json({ error: 'Error retrieving books' });
+      } else {
+        console.log(results);
+        res.json(results);
+      }
+    });
+  });
+
   
+  /*insert books*/ 
 /*search in member by the member id */ 
 app.get('/search-member/:memberId', (req, res) => {
   const memberId = req.params.memberId;
@@ -299,19 +268,6 @@ app.put('/update-staff/:staff_id',(req,res)=>{
     });
 });
 
-
-app.get('/get-all-books', function (req, res) {
-  connection.query('SELECT * FROM books', function (err, results) {
-    if (err) {
-      console.log(err);
-      res.json({ error: 'Error retrieving books' });
-    } else {
-      console.log(results);
-      res.json(results);
-    }
-  });
-});
-
 app.post('/add-login', (req, res) => {
   const loginData = req.body;
   console.log(loginData);
@@ -381,71 +337,40 @@ connection.query('UPDATE staff SET phone_no = ? WHERE staff_id = ?', [phone_no,s
 
 app.post('/enroll-membership', (req, res) => {
   const memberdata = req.body;
-  let chek1, chek2;
-  let completedQueries = 0;
 
-  function queryCallback(err, result) {
-      if (err) {
-          console.error('Error checking:', err);
-          return res.status(500).json({ error: 'Internal Server Error' });
-      }
+  connection.query(
+      'SELECT COUNT(*) AS count FROM staff WHERE staff_id = ? UNION SELECT COUNT(*) AS count FROM login WHERE login_id = ?',
+      [memberdata.registeredby, memberdata.loginid],
+      (err, results) => {
+          if (err) {
+              console.error('Error checking:', err);
+              return res.status(500).json({ error: 'Internal Server Error' });
+          }
 
-      if (result.length > 0) {
-          if (result[0].count > 0) {
-              completedQueries++;
+          // Assuming the first result corresponds to staff and the second to login
+          const chek1 = results[0].count || 0;
+          const chek2 = results[1].count || 0;
+
+          if (chek1 > 0 && chek2 > 0) {
+              connection.query(
+                  'INSERT INTO Members (Member_id, first_name, last_name, email, phone_no, address, next_renewal, login_id, registeredby) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)',
+                  [/* provide the values for each field */],
+                  (err, result) => {
+                      if (err) {
+                          console.error('Error inserting into Members:', err);
+                          return res.status(500).json({ error: 'Internal Server Error' });
+                      }
+                      console.log('Inserted into Members:', result);
+
+                      res.status(200).json({ success: 'Enrollment successful' });
+                  }
+              );
+          } else {
+              res.status(400).json({ error: 'Invalid enrollment conditions' });
           }
       }
-
-      if (completedQueries === 2) {
-          checkConditionsAndInsert();
-      }
-  }
-
-  connection.query(
-      'SELECT COUNT(*) AS count FROM staff WHERE staff_id = ?',
-      [memberdata.registeredby],
-      queryCallback
   );
-
-  connection.query(
-      'SELECT COUNT(*) AS count FROM login WHERE login_id = ?',
-      [memberdata.loginid],
-      queryCallback
-  );
-
-  function checkConditionsAndInsert() {
-      if (chek1 > 0 && chek2 > 0) {
-          connection.query(
-              'INSERT INTO Members (Member_id, first_name, last_name, email, phone_no, address, next_renewal, login_id, registeredby) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)',
-              [/* provide the values for each field */],
-              (err, result) => {
-                  if (err) {
-                      console.error('Error inserting into Members:', err);
-                      return res.status(500).json({ error: 'Internal Server Error' });
-                  }
-                  console.log('Inserted into Members:', result);
-
-                  res.status(200).json({ success: 'Enrollment successful' });
-              }
-          );
-      } else {
-          res.status(400).json({ error: 'Invalid enrollment conditions' });
-      }
-  }
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
   app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
   });

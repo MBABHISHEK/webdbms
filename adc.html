@@ -1,193 +1,259 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- ... (your existing meta tags and title) ... -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
-    <!-- ... (your existing styles) ... -->
-
-    <title>Dashboard</title>
+    <title>EBOOKS</title>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body {
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            background-image: url("services.JPG");
+            background-image: url('StaffForm.JPG'); /* Replace with your background image URL */
             background-size: cover;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-        }
-
-        body::before {
-            background-color: rgba(255, 255, 255, 0.0);
-        }
-
-        .dashboard-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around; /* Adjust as needed */
-            align-items: center;
-            padding: 20px; /* Adjust as needed */
-        }
-
-        .dashboard {
-            display: flex;
-            flex-direction: column;
-            background-color: #f44336;
-            color: #fff;
-            padding: 20px;
-            border-radius: 25px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease;
-            margin: 10px;
-            width: 250px;
-            height: 300px;
-            box-sizing: border-box;
-            justify-content: center; /* Center content vertically */
-            align-items: center; /* Center content horizontally */
-            cursor: pointer;
-        }
-
-        .dashboard:hover {
-            transform: scale(1.05);
+            font-family: Arial, sans-serif;
         }
 
         .sidebar {
-            width: 100%;
-        }
-
-        .sidebar-buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            position: relative;
-            z-index: 2;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .dashboard-button {
-            text-align: center;
-            transition: transform 0.3s ease;
-            position: relative;
-            z-index: 3;
-        }
-
-        .dashboard-button:hover {
-            transform: scale(1.1);
-        }
-
-        .button-container {
-            background-color: #156a72;
-            border-radius: 10px;
-        }
-
-        .dashboard-button a {
-            display: block;
-            padding: 10px;
-            border-radius: 8px;
+            height: 100%;
+            width: 250px;
+            position: fixed;
+            background-color: #343a40;
+            padding-top: 20px;
             color: #fff;
-            text-decoration: none;
-        }
-
-        .dashboard-button a:hover {
-            background-color: #0056b3;
         }
 
         .main-content {
-            flex-grow: 1;
+            margin-left: 250px;
             padding: 20px;
         }
+        .sidebar-buttons {
+      margin-top: 20px;
+    }
 
-        .A {
-            text-align: center;
-            color: whitesmoke;
-            font-size: 25px;
-            animation: fadeIn 1s ease-out;
-            margin-bottom: 20px;
+    .btn-sidebar {
+      width: 100%;
+      margin-bottom: 10px;
+      transition: margin-left 0.3s; /* Add transition for margin-left property */
+    }
+
+    .btn-sidebar:hover {
+      margin-left: 10px; /* Adjust the value based on your preference */
+    }
+        .add-eBook-form-container,
+        .update-eBook-form-container,
+        .delete-eBook-form-container {
+            display: none; /* Initially hide the forms */
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .add-eBook-form,
+        .update-eBook-form,
+        .delete-eBook-form {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            width: 400px; /* Adjust width as needed */
+        }
+
+        .form-row {
+            margin-bottom: 10px;
+        }
+
+        .btn-form {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+        }
+
+        .btn-form:hover {
+            background-color: #0056b3;
         }
     </style>
 </head>
-
 <body>
-
-    <div class="A">
-        <h1>SERVICES</h1>
+<div class="sidebar">
+    <div class="menu-item">EBOOK SERVICES </div>
+    <div class="sidebar-buttons">
+        <button class="btn btn-primary btn-sidebar" onclick="showInsertForm()">ADD EBOOK</button>
+        <button class="btn btn-secondary btn-sidebar" onclick="showUpdateForm()">UPDATE EBOOK</button>
+        <button class="btn btn-danger btn-sidebar" onclick="showDeleteForm()">DELETE EBOOK</button>
     </div>
-    <div class="dashboard-container">
-        <div class="dashboard">
-            <div class="sidebar">
-                <div class="sidebar-buttons">
-                    <i class="fas fa-book fa-3x"></i>
-                    <div class="dashboard-button">
-                        <div class="button-container">
-                            <a href="addBookFrom.html" class="btn btn-primary">BOOKS</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+</div>
 
-        <div class="dashboard">
-            <div class="sidebar">
-                <div class="sidebar-buttons">
-                    <i class="fas fa-user-edit fa-3x"></i>
-                    <div class="dashboard-button">
-                        <div class="button-container">
-                            <a href="addMembers.html" class="btn btn-primary">Membership</a>
+<div class="main-content">
+    <div class="add-eBook-form-container">
+                <form id="add-eBook-form" class="add-eBook-form">
+                    <div class="form-row">
+                        <div class="col">
+                            <label for="ebook_id">EBook ID:</label>
+                            <input type="text" class="form-control" id="ebook_id" name="ebook_id" required>
+                        </div>
+                        <div class="col">
+                            <label for="eBook_title">Title:</label>
+                            <input type="text" class="form-control" id="eBook_title" name="eBook_title" required>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="dashboard">
-            <div class="sidebar">
-                <div class="sidebar-buttons">
-                    <i class="fas fa-user-tie fa-3x"></i>
-                    <div class="dashboard-button">
-                        <div class="button-container">
-                            <a href="addStaffForm.html" class="btn btn-primary">Staff</a>
+            
+                    <div class="form-row">
+                        <div class="col">
+                            <label for="author">Author</label>
+                            <input type="text" class="form-control" id="author" name="author" required>
+                        </div>
+                        <div class="col">
+                            <label for="category">Category</label>
+                            <input type="text" class="form-control" id="category" name="category" required>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="dashboard">
-            <div class="sidebar">
-                <div class="sidebar-buttons">
-                    <i class="fas fa-sign-in-alt fa-3x"></i>
-                    <div class="dashboard-button">
-                        <div class="button-container">
-                            <a href="addLogin.html" class="btn btn-primary">Login</a>
+            
+                    <div class="form-row">
+                        <div class="col">
+                            <label for="ratings_value">URL</label>
+                            <input type="text" class="form-control" id="url" name="url" required>
+                        </div>
+                        <div class="col">
+                            <label for="ratings_value">Rating</label>
+                            <input type="tel" class="form-control" id="ratings_value" name="pratings_value" required>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="dashboard">
-            <div class="sidebar">
-                <div class="sidebar-buttons">
-                    <i class="fas fa-desktop fa-3x"></i>
-                    <div class="dashboard-button">
-                        <div class="button-container">
-                            <a href="Ebook.html" class="btn btn-primary">Ebook</a>
+            
+                    <div class="form-row">
+                        <div class="col">
+                            <label for="format">Format</label>
+                            <input type="tel" class="form-control" id="format" name="format" required>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
+            
+                    <button type="button" class="btn btn-primary" onclick="handleFormSubmit()">Add Staff</button>
+                </form>
     </div>
-    <div class="main-content">
-        <!-- Content for AddBookForm, AddMemberForm, etc. goes here -->
-    </div>
-</body>
 
-</html>
+    <div class="update-eBook-form-container">
+        <form id="update-eBook-form" class="update-eBook-form">
+            <div class="form-row">
+                <label for="updateeBookId">eBook ID to Update:</label>
+                <input type="text" class="form-control" id="updateeBookId" name="update_eBook_id" required>
+            </div>
+            <div class="form-row">
+                <label for="updateeBookId">Ratings value to Update:</label>
+                <input type="text" class="form-control" id="updateRatingsValue" name="updateRatingsValue" required>
+            </div>
+            <!-- ... (other fields for updating) ... -->
+            <button type="button" class="btn btn-secondary btn-form" onclick="handleUpdateSubmit()">Update Ratings</button>
+        </form>
+    </div>
+
+    <div class="delete-eBook-form-container">
+        <form id="delete-eBook-form" class="delete-eBook-form">
+            <div class="form-row">
+                <label for="deleteeBookId">eBook ID to Delete:</label>
+                <input type="text" class="form-control" id="deleteeBookId" name="delete_eBook_id" required>
+            </div>
+            <button type="button" class="btn btn-danger btn-form" onclick="handleDeleteSubmit()">Delete eBook</button>
+        </form>
+    </div>
+</div>
+
+<!-- Include Bootstrap JS and dependencies -->
+<script>
+    function showInsertForm() {
+        hideAllForms();
+        document.querySelector('.add-eBook-form-container').style.display = 'flex';
+    }
+
+    function showUpdateForm() {
+        hideAllForms();
+        document.querySelector('.update-eBook-form-container').style.display = 'flex';
+    }
+
+    function showDeleteForm() {
+        hideAllForms();
+        document.querySelector('.delete-eBook-form-container').style.display = 'flex';
+    }
+
+    function hideAllForms() {
+        document.querySelector('.add-eBook-form-container').style.display = 'none';
+        document.querySelector('.update-eBook-form-container').style.display = 'none';
+        document.querySelector('.delete-eBook-form-container').style.display = 'none';
+    }
+
+    function handleFormSubmit() {
+        const eBookData = {
+            ebook_id: document.getElementById('ebook_id').value,
+            eBook_title: document.getElementById('eBook_title').value,
+            author: document.getElementById('author').value,
+            category: document.getElementById('category').value,
+            url: document.getElementById('url').value,
+            ratings_value: document.getElementById('ratings_value').value,
+            format: document.getElementById('format').value,
+        };
+
+        console.log('eBook added successfully:', eBookData);
+        // You can perform additional actions here if needed
+        fetch('http://localhost:3000/add-ebook', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(eBookData),
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('eBook added successfully:', data);
+      alert('eBook added successfully');
+      // You can perform additional actions here if needed
+    })
+    .catch(error => {
+      console.error('Error adding book:', error);
+      alert('eBook notadded successfully category is wrong');
+    });
+    }
+
+    function handleDeleteSubmit() {
+        const ebook_id = document.getElementById('deleteeBookId').value
+        fetch(`http://localhost:3000/delete-ebook/${ebook_id}`, {
+      method: 'DELETE',
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('eBook deleted successfully:', data);
+      // You can perform additional actions here if needed
+    })
+    .catch(error => {
+      console.error('Error deleting ebook:', error);
+    });
+    }
+    function handleUpdateSubmit() {
+        const ebook_id = document.getElementById('updateeBookId').value
+        const updateData = {
+            ratings_value: document.getElementById('updateRatingsValue').value,
+        };
+        fetch(`http://localhost:3000/update-ebook/${ebook_id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(updateData),
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('eBook updated successfully:', data);
+      // You can perform additional actions here if needed
+    })
+    .catch(error => {
+      console.error('Error updating ebook:', error);
+    });
+    }
+</script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.8/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

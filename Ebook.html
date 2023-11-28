@@ -143,8 +143,12 @@
                 <label for="updateeBookId">eBook ID to Update:</label>
                 <input type="text" class="form-control" id="updateeBookId" name="update_eBook_id" required>
             </div>
+            <div class="form-row">
+                <label for="updateeBookId">Ratings value to Update:</label>
+                <input type="text" class="form-control" id="updateRatingsValue" name="updateRatingsValue" required>
+            </div>
             <!-- ... (other fields for updating) ... -->
-            <button type="button" class="btn btn-secondary btn-form" onclick="handleUpdateSubmit()">Update eBook</button>
+            <button type="button" class="btn btn-secondary btn-form" onclick="handleUpdateSubmit()">Update Ratings</button>
         </form>
     </div>
 
@@ -226,6 +230,27 @@
     })
     .catch(error => {
       console.error('Error deleting ebook:', error);
+    });
+    }
+    function handleUpdateSubmit() {
+        const ebook_id = document.getElementById('updateeBookId').value
+        const updateData = {
+            ratings_value: document.getElementById('updateRatingsValue').value,
+        };
+        fetch(`http://localhost:3000/update-ebook/${ebook_id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(updateData),
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('eBook updated successfully:', data);
+      // You can perform additional actions here if needed
+    })
+    .catch(error => {
+      console.error('Error updating ebook:', error);
     });
     }
 </script>
