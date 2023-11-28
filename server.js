@@ -379,7 +379,60 @@ connection.query('UPDATE staff SET phone_no = ? WHERE staff_id = ?', [phone_no,s
   });
 });
 
+app.post('/enroll-membership', (req, res) => {
+  const memberdata = req.body;
+  let chek1, chek2;
+  let completedQueries = 0;
 
+  function queryCallback(err, result) {
+      if (err) {
+          console.error('Error checking:', err);
+          return res.status(500).json({ error: 'Internal Server Error' });
+      }
+
+      if (result.length > 0) {
+          if (result[0].count > 0) {
+              completedQueries++;
+          }
+      }
+
+      if (completedQueries === 2) {
+          checkConditionsAndInsert();
+      }
+  }
+
+  connection.query(
+      'SELECT COUNT(*) AS count FROM staff WHERE staff_id = ?',
+      [memberdata.registeredby],
+      queryCallback
+  );
+
+  connection.query(
+      'SELECT COUNT(*) AS count FROM login WHERE login_id = ?',
+      [memberdata.loginid],
+      queryCallback
+  );
+
+  function checkConditionsAndInsert() {
+      if (chek1 > 0 && chek2 > 0) {
+          connection.query(
+              'INSERT INTO Members (Member_id, first_name, last_name, email, phone_no, address, next_renewal, login_id, registeredby) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)',
+              [/* provide the values for each field */],
+              (err, result) => {
+                  if (err) {
+                      console.error('Error inserting into Members:', err);
+                      return res.status(500).json({ error: 'Internal Server Error' });
+                  }
+                  console.log('Inserted into Members:', result);
+
+                  res.status(200).json({ success: 'Enrollment successful' });
+              }
+          );
+      } else {
+          res.status(400).json({ error: 'Invalid enrollment conditions' });
+      }
+  }
+});
 
 
 

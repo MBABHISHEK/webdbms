@@ -127,17 +127,21 @@
         .logo-container img {
             width: 150px; /* Adjust the width as needed */
             height: auto; /* Maintain aspect ratio */
-            animation: rotateLogo 5s infinite linear; /* Add the rotation animation */
+            animation: moveLogo 5s infinite linear; /* Add the rotation animation */
         }
 
-        @keyframes rotateLogo {
-            from {
-                transform: rotate(0deg);
-            }
-            to {
-                transform: rotate(360deg);
-            }
-        }
+        @keyframes moveLogo {
+    0% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(-25px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
     </style>
 </head>
 <body>
@@ -175,8 +179,8 @@
 <marquee behavior="scroll" direction="left" scrollamount="8" style="font-size: 30px; color:black">
     Welcome to  IdeaSpring Libary Management Software.
 </marquee>
-<div style="margin: auto;">
-    <img src="BookLogo.png" alt="Booklogo" style="height: 250px; width: 250px;margin: auto;">
+<div class="logo-container text-center">
+    <img src="BookLogo.png" alt="Booklogo" style="height: 250px; width: 250px; margin: auto;">
 </div>
 
 <!-- Bootstrap JS and dependencies -->
