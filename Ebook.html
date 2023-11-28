@@ -218,7 +218,7 @@
     });
     }
 
-    function handleDeleteSubmit() {
+    /*function handleDeleteSubmit() {
         const ebook_id = document.getElementById('deleteeBookId').value
         fetch(`http://localhost:3000/delete-ebook/${ebook_id}`, {
       method: 'DELETE',
@@ -226,12 +226,36 @@
     .then(response => response.json())
     .then(data => {
       console.log('eBook deleted successfully:', data);
+      alert(data);
       // You can perform additional actions here if needed
     })
     .catch(error => {
       console.error('Error deleting ebook:', error);
+      alert('eBook cannot be successfully deleted');
     });
-    }
+    }*/
+    function handleDeleteSubmit() {
+    const ebook_id = document.getElementById('deleteeBookId').value;
+    fetch(`http://localhost:3000/delete-ebook/${ebook_id}`, {
+        method: 'DELETE',
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log('eBook deleted successfully:', data);
+        alert('eBook deleted successfully');
+        // You can perform additional actions here if needed
+    })
+    .catch(error => {
+        console.error('Error deleting ebook:', error);
+        alert('Error deleting eBook. Please try again.');
+    });
+}
+
     function handleUpdateSubmit() {
         const ebook_id = document.getElementById('updateeBookId').value
         const updateData = {
@@ -247,6 +271,7 @@
     .then(response => response.json())
     .then(data => {
       console.log('eBook updated successfully:', data);
+      alert('Book updated successfully:');
       // You can perform additional actions here if needed
     })
     .catch(error => {

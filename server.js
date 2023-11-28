@@ -110,15 +110,21 @@ app.post('/add-book', (req, res) => {
 app.delete('/delete-ebook/:ebook_id', (req, res) => {
   const ebook_id = req.params.ebook_id;
   console.log(ebook_id);
-  connection.query('DELETE FROM ebooks WHERE ebook_id = ?', [ebook_id], (err) => {
+
+  connection.query('DELETE FROM ebooks WHERE ebook_id = ?', [ebook_id], (err, result) => {
     if (err) {
       console.error('Error deleting ebook:', err);
       res.status(500).json({ error: 'Internal Server Error' });
     } else {
-      res.json({ message: 'eBook deleted successfully' });
+      if (result.affectedRows > 0) {
+        res.json({ message: 'eBook deleted successfully' });
+      } else {
+        res.status(404).json({ error: 'eBook not found' });
+      }
     }
   });
 });
+
 
 /*delete-book by book id*/ 
 app.delete('/delete-book/:book_id', (req, res) => {

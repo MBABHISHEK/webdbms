@@ -411,10 +411,15 @@ button:hover {
             console.error('Error searching for books:', error);
         })
         .finally(() => {
+          doc.addImage('BookLogo.png', 'png', 2, 2, 25, 25);
+          doc.setFont('bold');
+          doc.text('BOOKS', 100, 18);
+          doc.setFont('normal')
             // This block will execute after the fetch operation is complete
             doc.autoTable({
                 head: [['Book ID', 'Title', 'Author', 'Edition', 'Category']],
                 body: books.map(book => [book.Book_id, book.Book_title, book.Book_author, book.Book_edition, book.categorised]),
+                startY: 30,
             });
 
             // Save the PDF
