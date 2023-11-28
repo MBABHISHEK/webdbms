@@ -124,6 +124,7 @@
 
 <script>
     function handleFormSubmit() {
+        console.log("hai")
         const loginData = {
             login_id: document.getElementById('loginId').value,
             first_name: document.getElementById('firstName').value,
@@ -135,7 +136,22 @@
             Department_name: document.getElementById('departmentName').value,
         };
 
-        console.log('Login data submitted:', loginData);
+        fetch('http://localhost:3000/add-login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(loginData),
+    })
+    .then(response => response.json())
+    .then(data => {
+      alert('login added successfully');
+      // You can perform additional actions here if needed
+    })
+    .catch(error => {
+      console.error('Error adding login:', error);
+      alert('login not added successfully');
+    });
         // You can perform additional actions here if needed
     }
 </script>

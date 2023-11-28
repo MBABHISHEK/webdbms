@@ -5,6 +5,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.15/jspdf.plugin.autotable.min.js"></script>
+    <!-- Add any additional meta tags or links to external stylesheets here -->
   <style>
     body {
       margin: 0;
@@ -188,6 +191,7 @@ button:hover {
 
       <div id="showResults" style="display: none;">
         <h2>Book List</h2>
+        <input type="button" value="create PDF" onclick="generatePDF()"/>
         <table id="resultTable">
           <thead>
             <tr>
@@ -386,6 +390,40 @@ button:hover {
        cell5.textContent=book.categorised;
     });
   }
+  function generatePDF() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+    let books;  // Declare books variable outside of the fetch block
+
+    fetch('http://localhost:3000/get-all-books')
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            if (data.error) {
+                console.error('Error searching for books:', data.error);
+            } else {
+                console.log('Books found:', data);
+                books = data;  // Assign data to the books variable
+                // You can display the search results or perform additional actions here
+            }
+        })
+        .catch(error => {
+            console.error('Error searching for books:', error);
+        })
+        .finally(() => {
+            // This block will execute after the fetch operation is complete
+            doc.autoTable({
+                head: [['Book ID', 'Title', 'Author', 'Edition', 'Category']],
+                body: books.map(book => [book.Book_id, book.Book_title, book.Book_author, book.Book_edition, book.categorised]),
+            });
+
+            // Save the PDF
+            doc.save('books.pdf');
+        });
+}
+
+
+  
   </script>
 
 </body>

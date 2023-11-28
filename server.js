@@ -312,6 +312,26 @@ app.get('/get-all-books', function (req, res) {
   });
 });
 
+app.post('/add-login', (req, res) => {
+  const loginData = req.body;
+  console.log(loginData);
+
+  // Check if staff_id exists in the staff table
+  connection.query(
+    'INSERT INTO login(login_id, first_name, last_name,t_date,visit,entry_time,exit_time,Department_name) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
+    [loginData.login_id,loginData.first_name,loginData.last_name,loginData.t_date,loginData.visit,loginData.entry_time,loginData.exit_time, loginData.Department_name],
+    (insertErr) => {
+      if (insertErr) {
+        console.error('Error adding staff:', insertErr);
+        return res.status(500).json({ error: 'Internal Server Error' });
+      }
+      res.json({ message: 'Staff added successfully' });
+    }
+  );
+});
+
+
+
 
 
 

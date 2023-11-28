@@ -183,7 +183,7 @@
                         </div>
                         <div class="col">
                             <label for="NextRenewal">Next Renewal</label>
-                            <input type="text" id="NextRenewal" name="Next_renewal" required>
+                            <input type="date" id="NextRenewal" name="Next_renewal" required>
                         </div>
                     </div>
                     <div class="form-row">
@@ -316,7 +316,7 @@
                 loginid: document.getElementById('loginid').value,
                 registeredby: document.getElementById('registeredby').value,
             };
-
+             console.log(membershipData);
             fetch('http://localhost:3000/enroll-membership', {
                     method: 'POST',
                     headers: {
