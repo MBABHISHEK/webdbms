@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.15/jspdf.plugin.autotable.min.js"></script>
     <style>
         body {
             margin: 0;
@@ -140,6 +142,7 @@
             <button class="btn btn-secondary btn-sidebar" onclick="showDeleteForm()">DELETE MEMBERSHIP</button>
             <button class="btn btn-primary btn-sidebar" onclick="showSearchForm()">SEARCH MEMBERSHIP</button>
             <button class="btn btn-primary btn-sidebar" onclick="displayResults()">DISPLAY MEMBERSHIP</button>
+            <button class="btn btn-primary btn-sidebar" onclick="generateFinePDF()">Fine Genration</button>
             <!-- Add more buttons as needed -->
         </div>
     </div>
@@ -416,6 +419,51 @@
                 console.log(row);
 
         }
+
+
+        function generateFinePDF() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+    let fines; // Declare fines variable outside of the fetch block
+
+    fetch('http://localhost:3000/get-all-fines')
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            if (data.error) {
+                console.error('Error fetching fines:', data.error);
+            } else {
+                console.log('Fines found:', data);
+                fines = data; // Assign data to the fines variable
+                // You can display the search results or perform additional actions here
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching fines:', error);
+        })
+        .finally(() => {
+            // This block will execute after the fetch operation is complete
+            doc.setFont('bold');
+          doc.text('BOOKS', 100, 18);
+          doc.setFont('normal')
+            doc.autoTable({
+                head: [['Fine ID', 'Member ID', 'Issue ID', 'Fine Date', 'Fine Amount', 'Fine Description', 'Fine Paid']],
+                body: fines.map(fine => [
+                    fine.Fine_id,
+                    fine.Member_id,
+                    fine.issue_id,
+                    fine.fine_date,
+                    fine.fine_amount,
+                    fine.fine_description,
+                    fine.fine_paid ? 'Yes' : 'No'
+                ]),
+            });
+
+            // Save the PDF
+            doc.save('fines.pdf');
+        });
+}
+
       </script>
 </body
 resultTable

@@ -409,6 +409,23 @@ app.post('/enroll-membership', (req, res) => {
     }
 );
 
+
+
+app.get('/get-all-fines', (req, res) => {
+  // Use a connection from the pool
+
+    // Perform the fetch operation
+    connection.query('SELECT * FROM Fine', (error, results) => {
+      if (error) {
+        console.error('Error fetching fines:', error);
+        return res.status(500).json({ error: 'Internal server error' });
+      }
+
+      // Return the fetched fines
+      res.json(results);
+    });
+  });
+
   app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
   });
