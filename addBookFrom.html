@@ -423,7 +423,7 @@ doc.addImage('/BookLogo.png', 'PNG', 10, 10, 40, 40);
 // Set font for the title
 doc.setFont('helvetica', 'bold');
 doc.setFontSize(18);
-doc.text('BOOKS', 60, 30);
+doc.text('BOOKS LIST', 60, 30);
 
 // Reset font to normal
 doc.setFont('helvetica', 'normal');
@@ -438,6 +438,7 @@ doc.setFontSize(12);
 
             // Save the PDF
             doc.save('books.pdf');
+            
         });
 }
 
