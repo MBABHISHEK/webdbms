@@ -145,16 +145,21 @@
                 </form>
     </div>
 
-    <div class="update-staff-form-container">
+<div class="update-staff-form-container">
         <form id="update-staff-form" class="update-staff-form">
             <div class="form-row">
                 <label for="updateStaffId">Staff ID to Update:</label>
                 <input type="text" class="form-control" id="updateStaffId" name="update_staff_id" required>
             </div>
+            <div class="form-row">
+                <label for="updateStaffId">Phone no to update</label>
+                <input type="text" class="form-control" id="phone_no" name="phone_no" required>
+            </div>
             <!-- ... (other fields for updating) ... -->
             <button type="button" class="btn btn-secondary btn-form" onclick="handleUpdateSubmit()">Update Staff</button>
         </form>
     </div>
+
 
     <div class="delete-staff-form-container">
         <form id="delete-staff-form" class="delete-staff-form">
