@@ -282,7 +282,7 @@ button:hover {
     .then(response => response.json())
     .then(data => {
       console.log('Book added successfully:', data);
-      alert('Book added successfully');
+      alert(data.value);
       // You can perform additional actions here if needed
     })
     .catch(error => {

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You!</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            background-image: url('Home.jpeg');
+            background-size: cover;
+            color: white;
+            overflow: hidden;
+        }
+
+        .overlay {
+            background-color: rgba(0, 0, 0, 0.5);
+            width: 100%;
+            height: 50%;
+            position: absolute;
+            top: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .thank-you-message {
+            font-size: 24px;
+        }
+
+        .additional-info {
+            font-size: 18px;
+            margin-top: 20px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay">
+        <h1 class="thank-you-message">Thank you for your kind cooperation!</h1>
+        <p>It was a nice experience to work with all.</p>
+        <p class="additional-info">We hope to see great projects in the future.</p>
+        <p class="additional-info">In the meantime, feel free to explore more of our website.</p>
+        <p class="additional-info">You can give us suggestions.</p>
+    </div>
+</body>
+</html>

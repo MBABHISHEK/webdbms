@@ -53,7 +53,7 @@ app.post('/add-book', (req, res) => {
             [bookData.Book_id, bookData.Book_title, bookData.Book_author, bookData.Book_edition, bookData.categorised],
             (insertErr) => {
               if (insertErr) {
-                console.error('Error adding book:', insertErr);
+                console.log('Error adding book:', insertErr);
                 return res.status(500).json({ error: 'Internal Server Error' });
               }
               res.json({ message: 'Book added successfully' });
@@ -144,7 +144,7 @@ app.delete('/delete-book/:book_id', (req, res) => {
   app.get('/search-book/:bookId', (req, res) => {
     const bookId = req.params.bookId;
     console.log(bookId);
-    connection.query('SELECT * FROM Books WHERE book_id =?', [${bookId}], (err, rows) => {
+    connection.query('SELECT * FROM Books WHERE book_id =?', [bookId], (err, rows) => {
       if (err) {
         console.error('Error searching for books:', err);
         res.status(500).json({ error: 'Internal Server Error' });
