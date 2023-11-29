@@ -399,18 +399,22 @@
     function displayMembersSearchResults(member)
     {const memberTableBody = document.getElementById('resultTableBody');
             memberTableBody.innerHTML = ''; // Clear previous data
-
+                    
                 const row = memberTableBody.insertRow();
-                console.log(member)
-                row.insertCell(0).textContent = member.Member_id;
-                row.insertCell(1).textContent = member.first_name;
-                row.insertCell(2).textContent = member.last_name;
-                row.insertCell(3).textContent = member.email;
-                row.insertCell(4).textContent = member.phone_no;
-                row.insertCell(5).textContent = member.address;
-                row.insertCell(6).textContent = member.next_renewal;
-                row.insertCell(7).textContent = member.login_id;
-                row.insertCell(8).textContent = member.registeredby;
+                console.log(member.member.Member_id)
+                console.log('Member_id:', member.Member_id);
+                console.log(row);
+                row.insertCell(0).textContent = member.member.Member_id;
+                row.insertCell(1).textContent =member.member.first_name;
+                row.insertCell(2).textContent = member.member.last_name;
+                row.insertCell(3).textContent = member.member.email;
+                row.insertCell(4).textContent = member.member.phone_no;
+                row.insertCell(5).textContent = member.member.address;
+                row.insertCell(6).textContent =member.member.next_renewal;
+                row.insertCell(7).textContent = member.member.login_id;
+                row.insertCell(8).textContent =member.member.registeredby;
+                console.log(row);
+
         }
       </script>
 </body
