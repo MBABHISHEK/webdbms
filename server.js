@@ -225,6 +225,22 @@ app.get('/get-all-members', function (req, res) {
   });
 });
 
+app.delete('/delete-member/:id', (req, res) => {
+  const deleteMembershipId = parseInt(req.params.id);
+  console.log(deleteMembershipId);
+connection.query('DELETE FROM members WHERE Member_id = ?', [deleteMembershipId], (error, results) => {
+  if (error) {
+    console.error('Error deleting membership:', error);
+    return res.status(500).json({ error: 'Internal server error' });
+  }
+
+  if (results.affectedRows > 0) {
+    res.json({ message: 'Membership deleted successfully' });
+  } else {
+    res.status(404).json({ error: 'Membership not found' });
+  }
+});
+});
 
 
 app.post('/add-staff', (req, res) => {

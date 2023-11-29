@@ -291,6 +291,7 @@
         }
         function handleDeleteMember() {
             const deleteMembershipId = document.getElementById('deleteMembershipId').value;
+            
             console.log('Deleting Membership with ID:', deleteMembershipId);
             fetch(`http://localhost:3000/delete-member/${deleteMembershipId}`, {
                     method: 'DELETE',
