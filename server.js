@@ -144,7 +144,7 @@ app.delete('/delete-book/:book_id', (req, res) => {
   app.get('/search-book/:bookId', (req, res) => {
     const bookId = req.params.bookId;
     console.log(bookId);
-    connection.query('SELECT * FROM Books WHERE book_id LIKE ?', [`%${bookId}%`], (err, rows) => {
+    connection.query('SELECT * FROM Books WHERE book_id =?', [${bookId}], (err, rows) => {
       if (err) {
         console.error('Error searching for books:', err);
         res.status(500).json({ error: 'Internal Server Error' });
