@@ -233,8 +233,8 @@
         </div>
 
         <div id="searchResults" style="display: none;">
-          <label for="MemberId">MEMBERSHIP ID: TO SEARCH</label>
-          <input type="text" id="MemberId" name="Member_id" required>
+          <label for="MemberId">MEMBERSHIP ID: TO Search
+          <input type="text" id="serachMemberId" name="Member_id" required></label>
           <button type="button" onclick="handleSearchMemberById()">Search</button>
             <h2>Search Results</h2>
             <table id="resultTable">
@@ -291,7 +291,7 @@
         }
         function handleDeleteMember() {
             const deleteMembershipId = document.getElementById('deleteMembershipId').value;
-            
+
             console.log('Deleting Membership with ID:', deleteMembershipId);
             fetch(`http://localhost:3000/delete-member/${deleteMembershipId}`, {
                     method: 'DELETE',
@@ -375,8 +375,9 @@
 
         // Call the function to show members on page load
         function handleSearchMemberById() {
-        const memberId = document.getElementById('MemberId').value;
+            const memberId = parseInt(document.getElementById('serachMemberId').value)
         console.log(typeof(memberId));
+        console.log(memberId);
         console.log('hai')
         fetch(`http://localhost:3000/search-member/${memberId}`)
             .then(response => response.json())
@@ -385,6 +386,7 @@
                     console.error('Error searching for members:', data.error);
                 } else {
                     console.log('Member found:', data);
+                    
                     displayMembersSearchResults(data);
                     // You can display the search results or perform additional actions here
                 }
@@ -394,22 +396,21 @@
             });
     }
 
-    function displayMembersSearchResults(members)
+    function displayMembersSearchResults(member)
     {const memberTableBody = document.getElementById('resultTableBody');
             memberTableBody.innerHTML = ''; // Clear previous data
 
-            members.forEach(member => {
                 const row = memberTableBody.insertRow();
+                console.log(member)
                 row.insertCell(0).textContent = member.Member_id;
                 row.insertCell(1).textContent = member.first_name;
                 row.insertCell(2).textContent = member.last_name;
                 row.insertCell(3).textContent = member.email;
                 row.insertCell(4).textContent = member.phone_no;
                 row.insertCell(5).textContent = member.address;
-                row.insertCell(6).textContent = member.Next_renewal;
-                row.insertCell(7).textContent = member.loginid;
+                row.insertCell(6).textContent = member.next_renewal;
+                row.insertCell(7).textContent = member.login_id;
                 row.insertCell(8).textContent = member.registeredby;
-            });
         }
       </script>
 </body

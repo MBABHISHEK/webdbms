@@ -189,7 +189,7 @@ app.delete('/delete-book/:book_id', (req, res) => {
   /*insert books*/ 
 /*search in member by the member id */ 
 app.get('/search-member/:memberId', (req, res) => {
-  const memberId = req.params.memberId;
+  const memberId = parseInt(req.params.memberId);
   console.log(memberId);
   connection.query(
     'SELECT * FROM Members WHERE Member_id = ?',
