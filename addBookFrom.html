@@ -412,13 +412,28 @@ button:hover {
         })
         .finally(() => {
             // This block will execute after the fetch operation is complete
-            doc.addImage('BookLogo.png', 'png', 2, 2, 25, 25);
-          doc.setFont('bold');
-          doc.text('BOOKS', 100, 18);
-          doc.setFont('normal')
+          doc.addImage('/BookLogo.png', 'PNG', 10, 10, 40, 40);
+
+// Set font for the title
+doc.setFont('helvetica', 'bold');
+doc.setFontSize(18);
+doc.text('BOOKS', 60, 30);
+doc.addImage('/BookLogo.png', 'PNG', 10, 10, 40, 40);
+
+// Set font for the title
+doc.setFont('helvetica', 'bold');
+doc.setFontSize(18);
+doc.text('BOOKS', 60, 30);
+
+// Reset font to normal
+doc.setFont('helvetica', 'normal');
+
+// Set font size for the table
+doc.setFontSize(12);
             doc.autoTable({
                 head: [['Book ID', 'Title', 'Author', 'Edition', 'Category']],
                 body: books.map(book => [book.Book_id, book.Book_title, book.Book_author, book.Book_edition, book.categorised]),
+                startY: 60, 
             });
 
             // Save the PDF

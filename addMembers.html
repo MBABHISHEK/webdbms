@@ -443,9 +443,21 @@
         })
         .finally(() => {
             // This block will execute after the fetch operation is complete
-            doc.setFont('bold');
-          doc.text('BOOKS', 100, 18);
-          doc.setFont('normal')
+            doc.setFont('helvetica', 'bold');
+            doc.setFontSize(18);
+            doc.text('BOOKS', 60, 30);
+            doc.addImage('/BookLogo.png', 'PNG', 10, 10, 40, 40);
+
+// Set font for the title
+doc.setFont('helvetica', 'bold');
+doc.setFontSize(18);
+doc.text('BOOKS LIST', 60, 30);
+
+// Reset font to normal
+doc.setFont('helvetica', 'normal');
+
+// Set font size for the table
+doc.setFontSize(12);
             doc.autoTable({
                 head: [['Fine ID', 'Member ID', 'Issue ID', 'Fine Date', 'Fine Amount', 'Fine Description', 'Fine Paid']],
                 body: fines.map(fine => [
@@ -456,7 +468,9 @@
                     fine.fine_amount,
                     fine.fine_description,
                     fine.fine_paid ? 'Yes' : 'No'
+                    
                 ]),
+                startY: 60, 
             });
 
             // Save the PDF
